@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: garet;
+  src: url("../src/assets/fonts/Garet-Book.otf");
+}
+@font-face {
+  font-family: garet-heavy;
+  src: url("../src/assets/fonts/Garet-Heavy.otf");
+}
+
+a.active {
+  background-color: #f8a813 !important;
+  color: white !important;
+}

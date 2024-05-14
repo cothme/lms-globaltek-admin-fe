@@ -1,0 +1,71 @@
+import { useEffect, useState } from "react";
+import useAuthContext from "../../hooks/useAuthContext";
+
+interface User {
+  count: number;
+}
+
+const StatisticsSection = () => {
+  const [users, setUsers] = useState(0);
+  const { user } = useAuthContext();
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await fetch("http://localhost:4000/api/user/", {
+        headers: {
+          Authorization: `Bearer ${user.jwt}`,
+        },
+      });
+      const json = await response.json();
+      setUsers(json);
+      if (response.ok) {
+        setUsers(json.userCount);
+      }
+    };
+    fetchUsers();
+  }, []);
+  return (
+    <>
+      <div className="flex md:flex-row flex-col">
+        <div
+          className="bg-gradient-to-r from-theme-maroon from-25% via-theme-gold via-100% 
+          w-full
+          text-white
+          p-6 m-4 h-1/4
+          md:rounded-s-full
+          hover:scale-75
+          duration-500"
+        >
+          <div className="font-garet text-center text-3xl">Students</div>
+          <div className="font-garetheavy text-center text-4xl mt-4">
+            {users}
+          </div>
+        </div>
+        <div
+          className="bg-gradient-to-r from-theme-gold from-25% via-theme-gold via-100% 
+          w-full
+          text-white
+          p-6 m-4 h-1/4
+          hover:scale-75
+          duration-500"
+        >
+          <div className="font-garet text-center text-3xl">Courses</div>
+          <div className="font-garetheavy text-center text-4xl mt-4">23</div>
+        </div>
+        <div
+          className="bg-gradient-to-r from-theme-gold from-25% via-theme-maroon via-100% 
+          w-full
+          text-white
+          p-6 m-4 h-1/4
+          md:rounded-e-full
+          hover:scale-75
+          duration-500"
+        >
+          <div className="font-garet text-center text-3xl">Admin</div>
+          <div className="font-garetheavy text-center text-4xl mt-4">1</div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default StatisticsSection;
