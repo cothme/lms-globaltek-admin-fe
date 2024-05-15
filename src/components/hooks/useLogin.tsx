@@ -2,7 +2,7 @@ import { useState } from "react";
 import useAuthContext from "./useAuthContext";
 
 interface userLogin {
-  email: string;
+  user_name: string;
   password: string;
 }
 interface userGoogle {

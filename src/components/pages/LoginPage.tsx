@@ -11,11 +11,11 @@ interface userGoogle {
   email: string;
 }
 interface user {
-  email: string;
+  user_name: string;
   password: string;
 }
 const defaultFormData = {
-  email: "",
+  user_name: "",
   password: "",
 };
 
@@ -24,7 +24,7 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState(defaultFormData);
-  const { email, password } = formData;
+  const { user_name, password } = formData;
 
   const handleSignInGoogle = (input: userGoogle) => {
     loginGoogle(input);
@@ -62,7 +62,7 @@ const LoginPage = () => {
           <form
             onSubmit={(e) =>
               handleSignIn(e, {
-                email: email,
+                user_name: user_name,
                 password: password,
               })
             }
@@ -70,15 +70,15 @@ const LoginPage = () => {
           >
             <div className="mb-4">
               <label className="block text-white text-sm font-bold mb-2 font-garet">
-                Email
+                Username
               </label>
               <input
                 onChange={onChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="email"
-                type="email"
-                value={formData.email}
-                placeholder="juan@gmail.com"
+                id="user_name"
+                type="text"
+                value={formData.user_name}
+                placeholder="Username"
               />
             </div>
             <div className="">
