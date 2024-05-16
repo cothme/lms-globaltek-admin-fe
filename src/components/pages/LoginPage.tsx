@@ -79,6 +79,8 @@ const LoginPage = () => {
                 type="text"
                 value={formData.user_name}
                 placeholder="Username"
+                role="text-field"
+                data-testid="login-signup-button"
               />
             </div>
             <div className="">
@@ -115,9 +117,11 @@ const LoginPage = () => {
               <GoogleLogin
                 onSuccess={(credentialResponse) => {
                   const token = credentialResponse.credential;
+
                   const decode = jwtDecode<JwtPayload>(
                     String(token)
                   ) as userGoogle;
+                  console.log(decode);
                   handleSignInGoogle({
                     family_name: decode.family_name,
                     given_name: decode.given_name,

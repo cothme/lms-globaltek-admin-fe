@@ -15,7 +15,7 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
     <>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flexjustify-center ">
+        <div className="drawer-content flex justify-center">
           {/* Page content here */}
           <div>
             <label
@@ -27,7 +27,7 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
           </div>
           {children}
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side z-50">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
