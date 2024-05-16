@@ -15,7 +15,7 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
     <>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex justify-center">
+        <div className="drawer-content justify-center">
           {/* Page content here */}
           <div>
             <label
