@@ -33,7 +33,7 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu w-40 lg:w-80 min-h-screen bg-theme-maroon text-white font-garet lg:text-3xl text-sm">
+          <ul className="fixed menu w-40 lg:w-80 min-h-screen bg-theme-maroon text-white font-garet lg:text-3xl text-sm">
             {/* Sidebar content here */}
             <img src={Logo} className="lg:w-auto w-40" alt="" />
             <li>
@@ -54,7 +54,7 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
             <div>
               <button
                 onClick={logout}
-                className="w-full p-4 hover:bg-black duration-200 rounded-2xl bg-theme-blue text-center"
+                className="w-full p-4 mt-28 hover:bg-black duration-200 rounded-2xl bg-theme-blue text-center"
               >
                 Log out
               </button>

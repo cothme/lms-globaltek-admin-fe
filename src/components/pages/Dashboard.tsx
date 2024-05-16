@@ -10,30 +10,32 @@ const Dashboard = () => {
   const percentage = 20;
   return (
     <>
-      <GreetingsSection greetingName={user.given_name} />
-      <StatisticsSection />
-      <RecentStudentsSection />
-      <div className="divider"></div>
-      <div className="flex justify-center">
-        <div className="w-1/4 flex flex-row">
-          <CircularProgressbar
-            styles={buildStyles({
-              pathColor: "#8B2635",
-              textColor: "#8B2635",
-            })}
-            className="h-20"
-            value={percentage}
-            text={`${percentage}`}
-          />
-          <CircularProgressbar
-            styles={buildStyles({
-              pathColor: "#8B2635",
-              textColor: "#8B2635",
-            })}
-            className=" h-20"
-            value={percentage}
-            text={`${percentage}`}
-          />
+      <div className="lg:ml-80">
+        <GreetingsSection greetingName={user.given_name} />
+        <StatisticsSection />
+        <RecentStudentsSection />
+        <div className="divider"></div>
+        <div className="flex justify-center">
+          <div className="w-1/4 flex flex-row">
+            <CircularProgressbar
+              styles={buildStyles({
+                pathColor: "#8B2635",
+                textColor: "#8B2635",
+              })}
+              className="h-20"
+              value={percentage}
+              text={`${percentage}`}
+            />
+            <CircularProgressbar
+              styles={buildStyles({
+                pathColor: "#8B2635",
+                textColor: "#8B2635",
+              })}
+              className=" h-20"
+              value={percentage}
+              text={`${percentage}`}
+            />
+          </div>
         </div>
       </div>
     </>

@@ -28,7 +28,7 @@ const StudentsPage = () => {
   }, []);
   return (
     <>
-      <div>
+      <div className="lg:ml-80">
         <div className="text-3xl font-garet m-4">
           <span className="font-garetheavy text-theme-gold">Student List</span>
         </div>

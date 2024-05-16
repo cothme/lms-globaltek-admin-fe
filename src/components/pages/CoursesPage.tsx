@@ -4,7 +4,7 @@ import useAuthContext from "../hooks/useAuthContext";
 const CoursesPage = () => {
   const { user } = useAuthContext();
   return (
-    <div>
+    <div className="lg:ml-80">
       <div className="text-3xl font-garet m-4">
         <span className="font-garetheavy text-theme-gold">Course List</span>
       </div>

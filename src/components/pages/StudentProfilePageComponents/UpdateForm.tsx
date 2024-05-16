@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import StudentStats from "./StudentStats";
+import React, { useState, useEffect } from "react";
+import useAuthContext from "../../hooks/useAuthContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 interface User {
   _id: string;
   family_name: string;
@@ -12,112 +15,157 @@ interface User {
 interface UserProp {
   users: User | null;
 }
-const UpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
-  const [familyName, setFamilyName] = useState(users?.family_name || "");
-  const [givenName, setGivenName] = useState(users?.given_name || "");
-  const [email, setEmail] = useState(users?.email || "");
-  const [familyNameChanged, setFamilyNameChanged] = useState(false);
-  const [givenNameChanged, setGivenNameChanged] = useState(false);
-  const [emailChanged, setEmailChanged] = useState(false);
+
+interface updateFormData {
+  family_name: string;
+  given_name: string;
+  email: string;
+}
+
+const UpdateForm: React.FC<UserProp> = ({ users }) => {
+  const toastNotify = (word: string) => {
+    toast(word);
+  };
+  const { user } = useAuthContext();
+  const [formData, setFormData] = useState<updateFormData>({
+    family_name: "",
+    given_name: "",
+    email: "",
+  });
   const [isModified, setIsModified] = useState(false);
-  const handleFamilyNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const newValue = event.target.value;
-    setFamilyName(newValue);
-    setFamilyNameChanged(newValue !== users?.family_name);
-    setIsModified(newValue !== users?.family_name);
+
+  useEffect(() => {
+    if (users) {
+      setFormData({
+        family_name: users.family_name,
+        given_name: users.given_name,
+        email: users.email,
+      });
+      setIsModified(false);
+    }
+  }, [users]);
+
+  useEffect(() => {
+    if (users) {
+      const hasChanges =
+        formData.family_name !== users.family_name ||
+        formData.given_name !== users.given_name ||
+        formData.email !== users.email;
+      setIsModified(hasChanges);
+    }
+  }, [formData, users]);
+
+  const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await fetch(
+      `http://localhost:4000/api/user/${users?._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${user.jwt}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    if (response.ok) {
+      toastNotify("Update successful! Please refresh");
+      console.log("Update successful");
+    } else {
+      console.log("Update failed!", formData);
+    }
   };
 
-  const handleGivenNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const newValue = event.target.value;
-    setGivenName(newValue);
-    setGivenNameChanged(newValue !== users?.given_name);
-    setIsModified(newValue !== users?.given_name);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
   };
 
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    setEmail(newValue);
-    setEmailChanged(newValue !== users?.email);
-    setIsModified(newValue !== users?.email);
-  };
   return (
-    <>
-      <div className="lg:ml-96 lg:m-0 mx-10 items-center flex flex-col md:flex-row lg:flex-row md:items-start lg:items-start">
-        <form className="w-full max-w-sm">
-          <div className="relative text-3xl m-4">
-            <span className="font-garetheavy text-theme-blue">
-              Account Details
-            </span>
-          </div>
-          <div className="md:flex md:items-center mb-6">
-            <div className="md:w-1/3">
-              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                Given Name
-                {givenNameChanged && <span className="text-red-600">*</span>}
-              </label>
+    <div className="bg-theme-blue m-8 p-4 rounded-xl">
+      <div className="flex flex-col">
+        <div className="lg:m-0 mx-10 items-center flex flex-col md:flex-row lg:flex-row md:items-start lg:items-start">
+          <form onSubmit={updateUser} className="w-full max-w-sm">
+            <div className="relative text-3xl m-4">
+              <span className="font-garetheavy text-white">
+                Account Details
+              </span>
             </div>
-            <div className="md:w-2/3">
-              <input
-                onChange={handleGivenNameChange}
-                className="bg-gray-200 border-gray-200 rounded w-full py-2 px-4 text-gray-700 "
-                id="given_name"
-                type="text"
-                defaultValue={users?.given_name}
-              />
+            <div className="md:flex md:items-center mb-6">
+              <div className="md:w-1/3">
+                <label className="block text-white font-bold md:text-right mb-1 md:mb-0 pr-4">
+                  Given Name
+                  {formData.given_name !== users?.given_name && (
+                    <span className="text-red-600">*</span>
+                  )}
+                </label>
+              </div>
+              <div className="md:w-2/3">
+                <input
+                  onChange={handleChange}
+                  className="bg-white border-gray-200 rounded w-full py-2 px-4 text-gray-700"
+                  id="given_name"
+                  type="text"
+                  value={formData.given_name}
+                />
+              </div>
             </div>
-          </div>
-          <div className="md:flex md:items-center mb-6">
-            <div className="md:w-1/3">
-              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                Family Name
-                {familyNameChanged && <span className="text-red-600">*</span>}
-              </label>
+            <div className="md:flex md:items-center mb-6">
+              <div className="md:w-1/3">
+                <label className="block text-white font-bold md:text-right mb-1 md:mb-0 pr-4">
+                  Family Name
+                  {formData.family_name !== users?.family_name && (
+                    <span className="text-red-600">*</span>
+                  )}
+                </label>
+              </div>
+              <div className="md:w-2/3">
+                <input
+                  onChange={handleChange}
+                  className="bg-white border-gray-200 rounded w-full py-2 px-4 text-gray-700"
+                  id="family_name"
+                  type="text"
+                  value={formData.family_name}
+                />
+              </div>
             </div>
-            <div className="md:w-2/3">
-              <input
-                onChange={handleFamilyNameChange}
-                className="bg-gray-200 border-gray-200 rounded w-full py-2 px-4 text-gray-700 "
-                id="family_name"
-                type="text"
-                defaultValue={users?.family_name}
-              />
+            <div className="md:flex md:items-center mb-6">
+              <div className="md:w-1/3">
+                <label className="block text-white font-bold md:text-right mb-1 md:mb-0 pr-4">
+                  Email
+                  {formData.email !== users?.email && (
+                    <span className="text-red-600">*</span>
+                  )}
+                </label>
+              </div>
+              <div className="md:w-2/3">
+                <input
+                  onChange={handleChange}
+                  className="bg-white border-gray-200 rounded w-full py-2 px-4 text-gray-700"
+                  id="email"
+                  type="text"
+                  value={formData.email}
+                />
+              </div>
             </div>
-          </div>
-          <div className="md:flex md:items-center mb-6">
-            <div className="md:w-1/3">
-              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                Email
-                {emailChanged && <span className="text-red-600">*</span>}
-              </label>
-            </div>
-            <div className="md:w-2/3">
-              <input
-                onChange={handleEmailChange}
-                className="bg-gray-200 border-gray-200 rounded w-full py-2 px-4 text-gray-700 "
-                id="family_name"
-                type="text"
-                defaultValue={users?.email}
-              />
-            </div>
-          </div>
-
-          {isModified && (
-            <div className="flex justify-end">
-              <button type="submit" className="btn flex justify-end btn-accent">
-                Update
-              </button>
-            </div>
-          )}
-        </form>
-        <div>
-          <StudentStats></StudentStats>
+            {isModified && (
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="btn flex justify-end btn-accent"
+                >
+                  Update
+                </button>
+              </div>
+            )}
+          </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
