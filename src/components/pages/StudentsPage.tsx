@@ -21,14 +21,14 @@ const StudentsPage = () => {
       const json = await response.json();
       setUsers(json);
       if (response.ok) {
-        setUsers(json.user);
+        setUsers(json.users);
       }
     };
     fetchUsers();
   }, []);
   return (
     <>
-      <div className="lg:ml-80">
+      <div className="lg:ml-60">
         <div className="text-3xl font-garet m-4">
           <span className="font-garetheavy text-theme-gold">Student List</span>
         </div>

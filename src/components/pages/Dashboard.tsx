@@ -10,8 +10,10 @@ const Dashboard = () => {
   const percentage = 20;
   return (
     <>
-      <div className="lg:ml-80">
-        <GreetingsSection greetingName={user.given_name} />
+      <div className="lg:ml-60">
+        <GreetingsSection
+          greetingName={user.given_name + " " + user.family_name}
+        />
         <StatisticsSection />
         <RecentStudentsSection />
         <div className="divider"></div>

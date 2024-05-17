@@ -10,8 +10,12 @@
   font-family: garet-heavy;
   src: url("../src/assets/fonts/Garet-Heavy.otf");
 }
+@font-face {
+  font-family: roboto-light;
+  src: url("../src//assets//fonts//Roboto-BoldItalic.ttf");
+}
 
 a.active {
-  background-color: #f8a813 !important;
+  background-color: #050a30 !important;
   color: white !important;
 }

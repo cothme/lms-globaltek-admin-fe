@@ -36,7 +36,7 @@ const StudentProfilePage = () => {
   const { id } = useParams();
   return (
     <>
-      <div className="lg:ml-80">
+      <div className="lg:ml-60">
         <StudentProfileV2 users={users} />
         <UpdateForm users={users} />
       </div>

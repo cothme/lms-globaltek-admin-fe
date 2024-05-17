@@ -33,10 +33,10 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="fixed menu w-40 lg:w-80 min-h-screen bg-theme-maroon text-white font-garet lg:text-3xl text-sm">
+          <ul className="fixed menu w-60 lg:w-60 min-h-screen bg-theme-maroon text-white lg:text-2xl text-lg flex flex-col">
             {/* Sidebar content here */}
-            {/* <img src={Logo} className="lg:w-48 w-40" alt="" /> */}
-            <h1 className="text-4xl font-garetheavy">LinkedLearn</h1>
+            <img src={Logo} className="relative m-4 lg:w-48 w-40" alt="" />
+            {/* <h1 className="text-3xl p-4 font-roboto-light">LinkedLearn</h1> */}
             <li>
               <NavLink className="my-2" to="/">
                 Dashboard
@@ -52,10 +52,12 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
                 Students
               </NavLink>
             </li>
-            <div>
+            <div className="flex-grow"></div>{" "}
+            {/* This div will take up all the remaining space */}
+            <div className="p-4">
               <button
                 onClick={logout}
-                className="w-full p-4 mt-28 hover:bg-black duration-200 rounded-2xl bg-theme-blue text-center"
+                className="w-full p-4 hover:bg-black duration-200 rounded-2xl bg-red-700 text-center"
               >
                 Log out
               </button>
