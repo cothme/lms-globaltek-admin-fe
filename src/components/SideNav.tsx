@@ -2,7 +2,7 @@ import { ReactNode, useState } from "react";
 import { IoListOutline } from "react-icons/io5";
 import { useLogout } from "./hooks/useLogout";
 import { NavLink } from "react-router-dom";
-import Logo from "../assets/branding/linkedlearnlogoadminwhite.png";
+import Logo from "../assets/branding/linkedlearnletterlogo.png";
 
 interface SideNavProps {
   children?: ReactNode;
@@ -35,7 +35,8 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
           ></label>
           <ul className="fixed menu w-40 lg:w-80 min-h-screen bg-theme-maroon text-white font-garet lg:text-3xl text-sm">
             {/* Sidebar content here */}
-            <img src={Logo} className="lg:w-auto w-40" alt="" />
+            {/* <img src={Logo} className="lg:w-48 w-40" alt="" /> */}
+            <h1 className="text-4xl font-garetheavy">LinkedLearn</h1>
             <li>
               <NavLink className="my-2" to="/">
                 Dashboard
