@@ -19,11 +19,16 @@ export const useLogin = () => {
   const login = async (input: userLogin) => {
     setIsLoading(true);
     setError(null);
-    const response = await fetch("http://localhost:4000/api/auth/admin/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(input),
-    });
+    const response = await fetch(
+      `http://localhost:${
+        import.meta.env.VITE_REACT_APP_PORT
+      }/api/auth/admin/login`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input),
+      }
+    );
     const json = await response.json();
 
     if (!response.ok) {
@@ -43,7 +48,9 @@ export const useLogin = () => {
     setIsLoading(true);
     setError(null);
     const response = await fetch(
-      "http://localhost:4000/api/auth/admin/google",
+      `http://localhost:${
+        import.meta.env.VITE_REACT_APP_PORT
+      }/api/auth/admin/google`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

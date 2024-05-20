@@ -13,11 +13,14 @@ const StudentsPage = () => {
   const [users, setUsers] = useState<User[]>([]);
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch("http://localhost:4000/api/admin/", {
-        headers: {
-          Authorization: `Bearer ${user.jwt}`,
-        },
-      });
+      const response = await fetch(
+        `http://localhost:${import.meta.env.VITE_REACT_APP_PORT}/api/admin`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.jwt}`,
+          },
+        }
+      );
       const json = await response.json();
       setUsers(json);
       if (response.ok) {

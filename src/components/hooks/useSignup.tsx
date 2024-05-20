@@ -17,11 +17,16 @@ export const useSignUp = () => {
   const signup = async (input: user) => {
     setIsLoading(true);
     setError(null);
-    const response = await fetch("http://localhost:4000/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(input),
-    });
+    const response = await fetch(
+      `http://localhost:${
+        import.meta.env.VITE_REACT_APP_PORT
+      }/api/auth/register`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input),
+      }
+    );
     const json = await response.json();
 
     if (!response.ok) {

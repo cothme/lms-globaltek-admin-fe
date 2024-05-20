@@ -7,11 +7,14 @@ const StatisticsSection = () => {
   const { user } = useAuthContext();
   useEffect(() => {
     const fetchCourses = async () => {
-      const response = await fetch("http://localhost:4000/api/course/", {
-        headers: {
-          Authorization: `Bearer ${user.jwt}`,
-        },
-      });
+      const response = await fetch(
+        `http://localhost:${import.meta.env.VITE_REACT_APP_PORT}/api/course`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.jwt}`,
+          },
+        }
+      );
       const json = await response.json();
       setCourseCount(json);
       if (response.ok) {
@@ -21,11 +24,14 @@ const StatisticsSection = () => {
     fetchCourses();
 
     const fetchUsers = async () => {
-      const response = await fetch("http://localhost:4000/api/admin/", {
-        headers: {
-          Authorization: `Bearer ${user.jwt}`,
-        },
-      });
+      const response = await fetch(
+        `http://localhost:${import.meta.env.VITE_REACT_APP_PORT}/api/admin`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.jwt}`,
+          },
+        }
+      );
       const json = await response.json();
       setUserCount(json);
       if (response.ok) {

@@ -17,7 +17,9 @@ export const useGoogleLogin = () => {
       setIsLoading(true);
       setError(null);
       const response = await fetch(
-        "http://localhost:4000/api/auth/admin/google",
+        `http://localhost:${
+          import.meta.env.VITE_REACT_APP_PORT
+        }/api/auth/google`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
