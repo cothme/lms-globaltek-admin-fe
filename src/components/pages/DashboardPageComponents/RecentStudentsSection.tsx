@@ -13,7 +13,7 @@ const RecentStudentsSection = () => {
   const [users, setUsers] = useState<User[]>([]);
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch("http://localhost:4000/api/user/3", {
+      const response = await fetch("http://localhost:4000/api/admin/count/3", {
         headers: {
           Authorization: `Bearer ${user.jwt}`,
         },

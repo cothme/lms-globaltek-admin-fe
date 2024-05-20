@@ -20,7 +20,7 @@ const StudentProfilePage = () => {
   const { user } = useAuthContext();
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await fetch(`http://localhost:4000/api/user/${id}`, {
+      const response = await fetch(`http://localhost:4000/api/admin/${id}`, {
         headers: {
           Authorization: `Bearer ${user.jwt}`,
         },

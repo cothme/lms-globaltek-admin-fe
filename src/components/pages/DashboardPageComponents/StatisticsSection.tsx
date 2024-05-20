@@ -1,24 +1,35 @@
 import { useEffect, useState } from "react";
 import useAuthContext from "../../hooks/useAuthContext";
 
-interface User {
-  count: number;
-}
-
 const StatisticsSection = () => {
-  const [users, setUsers] = useState(0);
+  const [userCount, setUserCount] = useState(0);
+  const [courseCount, setCourseCount] = useState(0);
   const { user } = useAuthContext();
   useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch("http://localhost:4000/api/user/", {
+    const fetchCourses = async () => {
+      const response = await fetch("http://localhost:4000/api/course/", {
         headers: {
           Authorization: `Bearer ${user.jwt}`,
         },
       });
       const json = await response.json();
-      setUsers(json);
+      setCourseCount(json);
       if (response.ok) {
-        setUsers(json.userCount);
+        setCourseCount(json.courseCount);
+      }
+    };
+    fetchCourses();
+
+    const fetchUsers = async () => {
+      const response = await fetch("http://localhost:4000/api/admin/", {
+        headers: {
+          Authorization: `Bearer ${user.jwt}`,
+        },
+      });
+      const json = await response.json();
+      setUserCount(json);
+      if (response.ok) {
+        setUserCount(json.userCount);
       }
     };
     fetchUsers();
@@ -37,7 +48,7 @@ const StatisticsSection = () => {
         >
           <div className="font-garet text-center text-3xl">Students</div>
           <div className="font-garetheavy text-center text-4xl mt-4">
-            {users}
+            {userCount}
           </div>
         </div>
         <div
@@ -49,7 +60,9 @@ const StatisticsSection = () => {
           duration-500"
         >
           <div className="font-garet text-center text-3xl">Courses</div>
-          <div className="font-garetheavy text-center text-4xl mt-4">23</div>
+          <div className="font-garetheavy text-center text-4xl mt-4">
+            {courseCount}
+          </div>
         </div>
         <div
           className="bg-gradient-to-r from-theme-gold from-25% via-theme-maroon via-100% 
