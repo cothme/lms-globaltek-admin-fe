@@ -18,9 +18,7 @@ export const useSignUp = () => {
     setIsLoading(true);
     setError(null);
     const response = await fetch(
-      `http://localhost:${
-        import.meta.env.VITE_REACT_APP_PORT
-      }/api/auth/register`,
+      `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/auth/register`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

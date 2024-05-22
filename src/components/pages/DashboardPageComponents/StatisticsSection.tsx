@@ -8,7 +8,7 @@ const StatisticsSection = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       const response = await fetch(
-        `http://localhost:${import.meta.env.VITE_REACT_APP_PORT}/api/course`,
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course`,
         {
           headers: {
             Authorization: `Bearer ${user.jwt}`,
@@ -25,7 +25,7 @@ const StatisticsSection = () => {
 
     const fetchUsers = async () => {
       const response = await fetch(
-        `http://localhost:${import.meta.env.VITE_REACT_APP_PORT}/api/admin`,
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/admin`,
         {
           headers: {
             Authorization: `Bearer ${user.jwt}`,

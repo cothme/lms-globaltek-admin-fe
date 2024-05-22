@@ -58,9 +58,7 @@ const UpdateForm: React.FC<UserProp> = ({ users }) => {
   const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const response = await fetch(
-      `http://localhost:${import.meta.env.VITE_REACT_APP_PORT}/api/user/${
-        users?._id
-      }`,
+      `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user/${users?._id}`,
       {
         method: "PATCH",
         headers: {

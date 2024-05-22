@@ -14,9 +14,7 @@ const RecentStudentsSection = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await fetch(
-        `http://localhost:${
-          import.meta.env.VITE_REACT_APP_PORT
-        }/api/admin/count/3`,
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/admin/count/3`,
         {
           headers: {
             Authorization: `Bearer ${user.jwt}`,

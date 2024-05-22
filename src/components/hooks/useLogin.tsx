@@ -20,9 +20,7 @@ export const useLogin = () => {
     setIsLoading(true);
     setError(null);
     const response = await fetch(
-      `http://localhost:${
-        import.meta.env.VITE_REACT_APP_PORT
-      }/api/auth/admin/login`,
+      `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/auth/admin/login`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -48,9 +46,7 @@ export const useLogin = () => {
     setIsLoading(true);
     setError(null);
     const response = await fetch(
-      `http://localhost:${
-        import.meta.env.VITE_REACT_APP_PORT
-      }/api/auth/admin/google`,
+      `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/auth/admin/google`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
