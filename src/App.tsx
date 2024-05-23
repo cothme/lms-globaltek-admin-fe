@@ -10,6 +10,8 @@ import Dashboard from "./components/pages/Dashboard";
 import StudentsPage from "./components/pages/StudentsPage";
 import StudentProfilePage from "./components/pages/StudentProfilePage";
 import NotFoundPage from "./components/pages/NotFoundPage";
+import CourseProfilePage from "./components/pages/CourseProfilePage";
+import CreateCoursePage from "./components/pages/CreateCoursePage";
 
 const App = () => {
   const { user } = useAuthContext();
@@ -30,6 +32,8 @@ const App = () => {
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/students" element={<StudentsPage />} />
             <Route path="/profile/:id" element={<StudentProfilePage />} />
+            <Route path="/course/:courseId" element={<CourseProfilePage />} />
+            <Route path="/course/create" element={<CreateCoursePage />} />
             <Route path="*" element={<NotFoundPage />}></Route>
           </Route>
           <Route
