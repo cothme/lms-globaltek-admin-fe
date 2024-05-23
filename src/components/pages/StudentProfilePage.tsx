@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAuthContext from "../hooks/useAuthContext";
-import ProfilePlaceholder from "../../assets/img-placeholder.png";
-import Logo from "../../assets/branding/linkedlearnlogonotextwhite.png";
 import StudentProfileV2 from "./StudentProfilePageComponents/StudentProfileV2";
 import UpdateForm from "./StudentProfilePageComponents/UpdateForm";
 
@@ -21,7 +19,7 @@ const StudentProfilePage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/admin/${id}`,
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/${id}`,
         {
           headers: {
             Authorization: `Bearer ${user.jwt}`,

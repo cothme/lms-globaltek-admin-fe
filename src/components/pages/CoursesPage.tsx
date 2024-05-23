@@ -7,14 +7,18 @@ const CoursesPage = () => {
   return (
     <>
       <div className="lg:ml-60 flex flex-col">
-        <div className="text-3xl font-garet m-4">
-          <span className="font-garetheavy text-theme-blue">Courses</span>
+        <div className="text-4xl breadcrumbs font-garetheavy text-theme-blue m-4">
+          <ul>
+            <li>
+              <a href="/courses">Course</a>
+            </li>
+          </ul>
         </div>
         <div className="flex flex-row justify-center lg:justify-end w-full">
           <div className="">
-            <button className="btn btn-accent font-garet m-4">
+            <a href="/course/create" className="btn btn-accent font-garet m-4">
               + Add Course
-            </button>
+            </a>
           </div>
         </div>
         <div className="divider"></div>
