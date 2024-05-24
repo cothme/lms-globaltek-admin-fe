@@ -3,11 +3,7 @@ interface cardComponents {
   course_desc: string;
   progress: string;
 }
-const CourseCard: React.FC<cardComponents> = ({
-  course_title,
-  course_desc,
-  progress,
-}) => {
+const CourseCard: React.FC<cardComponents> = ({ course_title }) => {
   return (
     <>
       <div className="card w-1/2 h-full bg-base-100 shadow-2xl m-4 flex flex-col ">

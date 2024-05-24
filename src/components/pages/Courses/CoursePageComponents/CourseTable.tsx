@@ -40,7 +40,7 @@ const CourseTable = () => {
               <th>Course Code</th>
               <th>Course Title</th>
               <th>Publisher</th>
-              <th>Is Published</th>
+              <th>Status</th>
               <th></th>
             </tr>
           </thead>
@@ -55,9 +55,9 @@ const CourseTable = () => {
                   <span
                     className={`bg-${
                       course.published ? "green" : "red"
-                    }-500 font-bold text-white  p-1 rounded-xl px-10`}
+                    }-500 font-bold text-white  h-1/2 rounded-lg px-2 p-1 `}
                   >
-                    {course.published ? "YES" : "NO"}
+                    {course.published ? "Published" : "Not Published"}
                   </span>
                 </td>
                 <td>

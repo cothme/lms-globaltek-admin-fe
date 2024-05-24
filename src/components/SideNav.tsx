@@ -66,7 +66,7 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
             <div className="flex-grow"></div>{" "}
             {/* This div will take up all the remaining space */}
             <div className="p-4">
-              <div className="text-center text-2xl text-white bg-blue-500 rounded-xl p-2 mb-4">
+              <div className="text-center text-2xl text-white bg-red-900 rounded-xl p-2 mb-4">
                 {user.given_name + " " + user.family_name}
               </div>
               <button

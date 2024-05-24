@@ -37,7 +37,7 @@ const CourseProfilePage = () => {
         if (response.ok) {
           setCourse(json);
         } else {
-          navigate("/mycourses");
+          navigate("/courses");
         }
       } catch (error) {
         navigate("/mycourses");
