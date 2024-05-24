@@ -95,7 +95,6 @@ const CourseProfile: React.FC<CourseProp> = ({
           },
         }
       );
-      const json = await response.json();
       if (!response.ok) {
         throw new Error("Unauthorized");
       }
