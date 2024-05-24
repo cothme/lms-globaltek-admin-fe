@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 import CourseProfile from "./CourseProfilePageComponents/CourseProfile";
 import UpdateCoursePage from "../UpdateCoursePage";
+import { toastNotify } from "../../helpers/toastNotify";
+import { useNavigate } from "react-router-dom";
 
 interface Course {
   _id: string;
@@ -15,23 +17,30 @@ interface Course {
 }
 
 const CourseProfilePage = () => {
+  const navigate = useNavigate();
   const [course, setCourse] = useState<Course | null>(null);
   const { user } = useAuthContext();
   const { courseId } = useParams();
   useEffect(() => {
     const fetchCourse = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/${courseId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.jwt}`,
-          },
-        }
-      );
-      const json = await response.json();
-      setCourse(json);
-      if (response.ok) {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/${courseId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.jwt}`,
+            },
+          }
+        );
+        const json = await response.json();
         setCourse(json);
+        if (response.ok) {
+          setCourse(json);
+        } else {
+          navigate("/mycourses");
+        }
+      } catch (error) {
+        navigate("/mycourses");
       }
     };
     fetchCourse();
