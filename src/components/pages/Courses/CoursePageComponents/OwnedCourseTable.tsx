@@ -9,13 +9,15 @@ interface Course {
   published: boolean;
 }
 
-const CourseTable = () => {
+const OwnedCourseTable = () => {
   const { user } = useAuthContext();
   const [courses, setCourses] = useState<Course[]>([]);
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course`,
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/mycourses/${
+          user._id
+        }`,
         {
           headers: {
             Authorization: `Bearer ${user.jwt}`,
@@ -41,6 +43,7 @@ const CourseTable = () => {
               <th>Course Title</th>
               <th>Publisher</th>
               <th>Is Published</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -59,6 +62,14 @@ const CourseTable = () => {
                     {course.published ? "YES" : "NO"}
                   </span>
                 </td>
+                <td>
+                  <a
+                    href={`mycourses/${course._id}`}
+                    className="btn btn-ghost btn-xs"
+                  >
+                    More Details
+                  </a>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -68,4 +79,4 @@ const CourseTable = () => {
   );
 };
 
-export default CourseTable;
+export default OwnedCourseTable;

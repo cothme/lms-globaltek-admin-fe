@@ -51,7 +51,9 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
                     </NavLink>
                   </li>
                   <li>
-                    <a>My Courses</a>
+                    <NavLink className="my-2" to="/mycourses">
+                      My Courses
+                    </NavLink>
                   </li>
                 </ul>
               </details>
