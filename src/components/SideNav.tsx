@@ -10,7 +10,6 @@ interface SideNavProps {
 
 const SideNav: React.FC<SideNavProps> = ({ children }) => {
   const { logout } = useLogout();
-  const [activePage, setActivePage] = useState("Dashboard");
   return (
     <>
       <div className="drawer lg:drawer-open">
@@ -43,9 +42,19 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink className="my-2" to="/courses">
-                Courses
-              </NavLink>
+              <details open>
+                <summary>Courses</summary>
+                <ul className="text-lg">
+                  <li>
+                    <NavLink className="my-2" to="/courses">
+                      All Courses
+                    </NavLink>
+                  </li>
+                  <li>
+                    <a>My Courses</a>
+                  </li>
+                </ul>
+              </details>
             </li>
             <li>
               <NavLink className="my-2" to="/students">

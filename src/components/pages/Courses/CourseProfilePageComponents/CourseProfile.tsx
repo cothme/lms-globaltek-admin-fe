@@ -1,8 +1,8 @@
 import { useState } from "react";
 import swal from "sweetalert";
-import useAuthContext from "../../hooks/useAuthContext";
+import useAuthContext from "../../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
-import { toastNotify } from "../../helpers/toastNotify";
+import { toastNotify } from "../../../helpers/toastNotify";
 
 interface Course {
   _id: string;
@@ -75,7 +75,10 @@ const CourseProfile: React.FC<CourseProp> = ({
 
       return true;
     } catch (error) {
-      console.error("Error updating published status:", error);
+      swal({
+        icon: "error",
+        text: String(error + ": Unauthorized"),
+      });
       return false;
     }
   };
@@ -99,7 +102,6 @@ const CourseProfile: React.FC<CourseProp> = ({
 
       toastNotify("Deleted Successfully!");
       navigate("/courses");
-      // Optionally, you can redirect the user or perform any other action after deletion
     } catch (error) {
       console.error("Error deleting course:", error);
       swal({

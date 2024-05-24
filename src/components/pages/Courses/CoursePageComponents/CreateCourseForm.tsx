@@ -1,58 +1,33 @@
-import React, { useEffect, useState } from "react";
-import useAuthContext from "../../hooks/useAuthContext";
-import { toastNotify } from "../../helpers/toastNotify";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import useAuthContext from "../../../hooks/useAuthContext";
+import { toastNotify } from "../../../helpers/toastNotify";
+import { json } from "react-router-dom";
 
-interface Course {
+interface createCourseData {
   course_title: string;
   course_description: string;
   course_code: string;
+  difficulty: number | null;
   publisher: string;
   required_subscription: string;
 }
 
-const UpdateCourseForm = () => {
-  const [course, setCourse] = useState<Course | null>(null);
-  const { courseId } = useParams();
+const CreateCourseForm = () => {
   const { user } = useAuthContext();
-  const [formData, setFormData] = useState<Course>({
+  const [formData, setFormData] = useState<createCourseData>({
     course_title: "",
     course_description: "",
     course_code: "",
+    difficulty: null,
     publisher: user.user_name,
     required_subscription: "",
   });
 
-  useEffect(() => {
-    const fetchCourse = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/${courseId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.jwt}`,
-          },
-        }
-      );
-      const json = await response.json();
-      if (response.ok) {
-        setCourse(json);
-        setFormData({
-          course_title: json.course_title,
-          course_description: json.course_description,
-          course_code: json.course_code,
-          publisher: json.publisher,
-          required_subscription: json.required_subscription,
-        });
-      }
-    };
-    fetchCourse();
-  }, [courseId, user.jwt]);
-
-  const updatedCourse = async () => {
+  const createCourse = async () => {
     const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/${courseId}`,
+      `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/`,
       {
-        method: "PATCH",
+        method: "POST",
         headers: {
           Authorization: `Bearer ${user.jwt}`,
           "Content-Type": "application/json",
@@ -63,7 +38,7 @@ const UpdateCourseForm = () => {
     const json = await response.json();
 
     if (response.ok) {
-      toastNotify("Course updated!");
+      toastNotify("Course created!");
     } else {
       toastNotify(json.error);
     }
@@ -83,17 +58,16 @@ const UpdateCourseForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    updatedCourse();
+    createCourse();
     resetFields();
     console.log("Form submitted:", formData);
-    console.log(courseId);
   };
-
   const resetFields = () => {
     setFormData({
       course_title: "",
       course_description: "",
       course_code: "",
+      difficulty: null,
       publisher: user.user_name,
       required_subscription: "",
     });
@@ -179,11 +153,11 @@ const UpdateCourseForm = () => {
           type="submit"
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
         >
-          Update Course
+          Create Course
         </button>
       </div>
     </form>
   );
 };
 
-export default UpdateCourseForm;
+export default CreateCourseForm;

@@ -3,15 +3,15 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./components/pages/LoginPage";
 import useAuthContext from "./components/hooks/useAuthContext";
 import MainLayout from "./components/layouts/MainLayout";
-import CoursesPage from "./components/pages/CoursesPage";
+import CoursesPage from "./components/pages/Courses/CoursesPage";
 import AboutPage from "./components/pages/AboutPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./components/pages/Dashboard";
 import StudentsPage from "./components/pages/StudentsPage";
 import StudentProfilePage from "./components/pages/StudentProfilePage";
 import NotFoundPage from "./components/pages/NotFoundPage";
-import CourseProfilePage from "./components/pages/CourseProfilePage";
-import CreateCoursePage from "./components/pages/CreateCoursePage";
+import CourseProfilePage from "./components/pages/Courses/CourseProfilePage";
+import CreateCoursePage from "./components/pages/Courses/CreateCoursePage";
 import UpdateCoursePage from "./components/pages/UpdateCoursePage";
 
 const App = () => {

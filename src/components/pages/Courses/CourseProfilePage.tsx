@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useAuthContext from "../hooks/useAuthContext";
+import useAuthContext from "../../hooks/useAuthContext";
 import CourseProfile from "./CourseProfilePageComponents/CourseProfile";
-import UpdateCoursePage from "./UpdateCoursePage";
+import UpdateCoursePage from "../UpdateCoursePage";
 
 interface Course {
   _id: string;

@@ -1,6 +1,6 @@
 import React from "react";
-import CreateCourseForm from "./CoursePageComponents/CreateCourseForm";
-import UpdateCourseForm from "./CoursePageComponents/UpdateCourseForm";
+import CreateCourseForm from "./Courses/CoursePageComponents/CreateCourseForm";
+import UpdateCourseForm from "./Courses/CoursePageComponents/UpdateCourseForm";
 import { useParams } from "react-router-dom";
 
 const UpdateCoursePage = () => {
