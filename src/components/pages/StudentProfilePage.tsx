@@ -19,7 +19,7 @@ const StudentProfilePage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/${id}`,
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user/${id}`,
         {
           headers: {
             Authorization: `Bearer ${user.jwt}`,

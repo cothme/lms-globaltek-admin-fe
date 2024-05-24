@@ -14,8 +14,15 @@ interface UserProp {
 const StudentProfileV2: React.FC<UserProp> = ({ users }: UserProp) => {
   return (
     <>
-      <div className="relative text-4xl mx-4 mt-4">
-        <span className="font-garetheavy text-theme-blue">User Profile</span>
+      <div className="text-4xl breadcrumbs font-garetheavy text-theme-blue m-4">
+        <ul>
+          <li>
+            <a href="/students">Students</a>
+          </li>
+          <li>
+            <a href={`${users?._id}`}>Student Profile</a>
+          </li>
+        </ul>
       </div>
       <div className="relative rounded-lg m-8 min-w-screen h-[20vh] lg:h-[24vh] bg-theme-blue shadow-2xl">
         <div className="relative flex items-center z-10 ">

@@ -47,18 +47,22 @@ const CourseTable = () => {
           <tbody>
             {/* row 1 */}
             {courses.map((course) => (
-              <tr>
+              <tr key={course._id}>
                 <td>{course.course_code}</td>
                 <td>{course.course_title}</td>
                 <td>{course.publisher}</td>
                 <td>
-                  <span className="bg green-100 font-bold text-white bg-red-500 p-1 rounded-xl px-10">
-                    No
+                  <span
+                    className={`bg-${
+                      course.published ? "green" : "red"
+                    }-500 font-bold text-white  p-1 rounded-xl px-10`}
+                  >
+                    {course.published ? "YES" : "NO"}
                   </span>
                 </td>
                 <td>
                   <a
-                    href={`course/${course._id}`}
+                    href={`courses/${course._id}`}
                     className="btn btn-ghost btn-xs"
                   >
                     More Details

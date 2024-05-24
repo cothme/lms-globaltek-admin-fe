@@ -14,7 +14,7 @@ const StudentsPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/admin`,
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user`,
         {
           headers: {
             Authorization: `Bearer ${user.jwt}`,
@@ -32,8 +32,12 @@ const StudentsPage = () => {
   return (
     <>
       <div className="lg:ml-60">
-        <div className="text-3xl font-garet m-4">
-          <span className="font-garetheavy text-theme-gold">Student List</span>
+        <div className="text-4xl breadcrumbs font-garetheavy text-theme-blue m-4">
+          <ul>
+            <li>
+              <a href="/students">Student</a>
+            </li>
+          </ul>
         </div>
         <div className="overflow-x-auto">
           <table className="table">
@@ -75,7 +79,7 @@ const StudentsPage = () => {
                   <td>{user.email}</td>
                   <th>
                     <a
-                      href={`/profile/${user._id}`}
+                      href={`students/profile/${user._id}`}
                       className="btn btn-ghost btn-xs"
                     >
                       More Details

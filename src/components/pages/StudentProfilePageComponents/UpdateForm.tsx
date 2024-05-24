@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useAuthContext from "../../hooks/useAuthContext";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toastNotify } from "../../helpers/toastNotify";
 
 interface User {
   _id: string;
@@ -22,10 +21,7 @@ interface updateFormData {
   email: string;
 }
 
-const UpdateForm: React.FC<UserProp> = ({ users }) => {
-  const toastNotify = (word: string) => {
-    toast(word);
-  };
+const UpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
   const { user } = useAuthContext();
   const [formData, setFormData] = useState<updateFormData>({
     family_name: "",

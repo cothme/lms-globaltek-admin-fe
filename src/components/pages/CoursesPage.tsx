@@ -1,6 +1,4 @@
-import React from "react";
 import useAuthContext from "../hooks/useAuthContext";
-import CourseCard from "./CoursePageComponents/CourseCard";
 import CourseTable from "./CoursePageComponents/CourseTable";
 const CoursesPage = () => {
   const { user } = useAuthContext();
@@ -16,7 +14,7 @@ const CoursesPage = () => {
         </div>
         <div className="flex flex-row justify-center lg:justify-end w-full">
           <div className="">
-            <a href="/course/create" className="btn btn-accent font-garet m-4">
+            <a href="/courses/create" className="btn btn-accent font-garet m-4">
               + Add Course
             </a>
           </div>

@@ -4,6 +4,7 @@ import useAuthContext from "../../hooks/useAuthContext";
 const StatisticsSection = () => {
   const [userCount, setUserCount] = useState(0);
   const [courseCount, setCourseCount] = useState(0);
+  const [adminCount, setAdminCount] = useState(0);
   const { user } = useAuthContext();
   useEffect(() => {
     const fetchCourses = async () => {
@@ -22,10 +23,25 @@ const StatisticsSection = () => {
       }
     };
     fetchCourses();
-
-    const fetchUsers = async () => {
+    const fetchAdmins = async () => {
       const response = await fetch(
         `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/admin`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.jwt}`,
+          },
+        }
+      );
+      const json = await response.json();
+      setAdminCount(json);
+      if (response.ok) {
+        setAdminCount(json.adminCount);
+      }
+    };
+    fetchAdmins();
+    const fetchUsers = async () => {
+      const response = await fetch(
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user`,
         {
           headers: {
             Authorization: `Bearer ${user.jwt}`,
@@ -80,7 +96,9 @@ const StatisticsSection = () => {
           duration-500"
         >
           <div className="font-garet text-center text-3xl">Admin</div>
-          <div className="font-garetheavy text-center text-4xl mt-4">1</div>
+          <div className="font-garetheavy text-center text-4xl mt-4">
+            {adminCount}
+          </div>
         </div>
       </div>
     </>

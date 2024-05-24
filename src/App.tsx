@@ -12,6 +12,7 @@ import StudentProfilePage from "./components/pages/StudentProfilePage";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import CourseProfilePage from "./components/pages/CourseProfilePage";
 import CreateCoursePage from "./components/pages/CreateCoursePage";
+import UpdateCoursePage from "./components/pages/UpdateCoursePage";
 
 const App = () => {
   const { user } = useAuthContext();
@@ -31,9 +32,16 @@ const App = () => {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/students" element={<StudentsPage />} />
-            <Route path="/profile/:id" element={<StudentProfilePage />} />
-            <Route path="/course/:courseId" element={<CourseProfilePage />} />
-            <Route path="/course/create" element={<CreateCoursePage />} />
+            <Route
+              path="students/profile/:id"
+              element={<StudentProfilePage />}
+            />
+            <Route path="/courses/:courseId" element={<CourseProfilePage />} />
+            <Route path="/courses/create" element={<CreateCoursePage />} />
+            <Route
+              path="/courses/update/:courseId"
+              element={<UpdateCoursePage />}
+            />
             <Route path="*" element={<NotFoundPage />}></Route>
           </Route>
           <Route
