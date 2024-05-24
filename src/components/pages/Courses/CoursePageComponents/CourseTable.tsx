@@ -41,6 +41,7 @@ const CourseTable = () => {
               <th>Course Title</th>
               <th>Publisher</th>
               <th>Is Published</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -58,6 +59,14 @@ const CourseTable = () => {
                   >
                     {course.published ? "YES" : "NO"}
                   </span>
+                </td>
+                <td>
+                  <a
+                    href={`courses/${course._id}`}
+                    className="btn btn-ghost btn-xs"
+                  >
+                    More Details
+                  </a>
                 </td>
               </tr>
             ))}

@@ -130,10 +130,10 @@ const CourseProfile: React.FC<CourseProp> = ({
       <div className="text-4xl breadcrumbs font-garetheavy text-theme-blue m-4">
         <ul>
           <li>
-            <a href="/courses">Created Course</a>
+            <a href="/courses">Course</a>
           </li>
           <li>
-            <a href={`/mycourses/${course?._id}`}>Course Profile</a>
+            <a href={`/courses/${course?._id}`}>Course Profile</a>
           </li>
         </ul>
       </div>
@@ -158,7 +158,7 @@ const CourseProfile: React.FC<CourseProp> = ({
           {course?.published ? "Unpublish Course" : "Publish Course"}
         </button>
         <a
-          href={`/mycourses/update/${course?._id}`}
+          href={`/courses/update/${course?._id}`}
           className="btn bg-green-500 font-garet m-4"
         >
           Update Course

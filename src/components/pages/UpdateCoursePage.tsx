@@ -11,10 +11,10 @@ const UpdateCoursePage = () => {
         <div className="text-4xl breadcrumbs font-garetheavy text-theme-blue m-4">
           <ul>
             <li>
-              <a href="/courses">Created Course</a>
+              <a href="/courses">Course</a>
             </li>
             <li>
-              <a href={`/mycourses/${courseId}`}>Course Profile</a>
+              <a href={`/courses/${courseId}`}>Course Profile</a>
             </li>
             <li>
               <a href={`/courses/update/${courseId}`}>Update Course</a>
