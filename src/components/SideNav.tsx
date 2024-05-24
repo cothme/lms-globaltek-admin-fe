@@ -3,12 +3,14 @@ import { IoListOutline } from "react-icons/io5";
 import { useLogout } from "./hooks/useLogout";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/branding/linkedlearnletterlogo.png";
+import useAuthContext from "./hooks/useAuthContext";
 
 interface SideNavProps {
   children?: ReactNode;
 }
 
 const SideNav: React.FC<SideNavProps> = ({ children }) => {
+  const { user } = useAuthContext();
   const { logout } = useLogout();
   return (
     <>
@@ -66,6 +68,9 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
             <div className="flex-grow"></div>{" "}
             {/* This div will take up all the remaining space */}
             <div className="p-4">
+              <div className="text-center text-2xl text-white bg-blue-500 rounded-xl p-2 mb-4">
+                {user.given_name + " " + user.family_name}
+              </div>
               <button
                 onClick={logout}
                 className="w-full p-4 hover:bg-black duration-200 rounded-2xl bg-red-700 text-center"
