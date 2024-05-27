@@ -1,86 +1,19 @@
-import React, { useState, useEffect } from "react";
-import useAuthContext from "../../hooks/useAuthContext";
-import { toastNotify } from "../../helpers/toastNotify";
 import User from "../../interfaces/User";
+import { useUpdateStudentForm } from "../../hooks/student hooks/useUpdateStudentForm";
 
 interface UserProp {
   users: User | null;
 }
 
-interface updateFormData {
-  family_name?: string;
-  given_name?: string;
-  email?: string;
-}
-
 const UpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
-  const [file, setFile] = useState(null);
-
-  const handleFileChange = (e: any) => {
-    setFile(e.target.files[0]);
-    console.log(file);
-    setIsModified(true);
-  };
-  const { user } = useAuthContext();
-  const [formData, setFormData] = useState<updateFormData>({
-    family_name: "",
-    given_name: "",
-    email: "",
-  });
-  const [isModified, setIsModified] = useState(false);
-
-  useEffect(() => {
-    if (users) {
-      setFormData({
-        family_name: users.family_name,
-        given_name: users.given_name,
-        email: users.email,
-      });
-      setIsModified(false);
-    }
-  }, [users]);
-
-  useEffect(() => {
-    if (users) {
-      const hasChanges =
-        formData.family_name !== users.family_name ||
-        formData.given_name !== users.given_name ||
-        formData.email !== users.email;
-      setIsModified(hasChanges);
-    }
-  }, [formData, users]);
-
-  const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user/${users?._id}`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${user.jwt}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    );
-
-    if (response.ok) {
-      toastNotify("Update successful! Please refresh");
-      console.log("Update successful");
-      console.log(file);
-    } else {
-      console.log("Update failed!", formData);
-      console.log(file);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
-  };
+  const {
+    formData,
+    file,
+    isModified,
+    handleChange,
+    handleFileChange,
+    updateUser,
+  } = useUpdateStudentForm(users);
 
   return (
     <>
