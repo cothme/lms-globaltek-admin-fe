@@ -3,16 +3,7 @@ import swal from "sweetalert";
 import useAuthContext from "../../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import { toastNotify } from "../../../helpers/toastNotify";
-
-interface Course {
-  _id: string;
-  course_title: string;
-  course_description: string;
-  course_code: string;
-  publisher: string;
-  required_subscription: string;
-  published: boolean;
-}
+import Course from "../../../interfaces/Course";
 
 interface CourseProp {
   course: Course | null;
