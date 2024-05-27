@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuthContext from "../../hooks/useAuthContext";
+import useFetchAllStudentsWithCount from "../../hooks/student hooks/useFetchAllStudentsWithCount";
 
 interface User {
   _id: string;
@@ -9,26 +10,10 @@ interface User {
 }
 
 const RecentStudentsSection = () => {
-  const { user } = useAuthContext();
-  const [users, setUsers] = useState<User[]>([]);
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/admin/count/3`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.jwt}`,
-          },
-        }
-      );
-      const json = await response.json();
-      setUsers(json);
-      if (response.ok) {
-        setUsers(json.user);
-      }
-    };
-    fetchUsers();
-  }, []);
+  const { users, loading, error } = useFetchAllStudentsWithCount(3);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
   return (
     <>
       <div>

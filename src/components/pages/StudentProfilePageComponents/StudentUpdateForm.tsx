@@ -5,7 +5,7 @@ interface UserProp {
   users: User | null;
 }
 
-const UpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
+const StudentUpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
   const {
     formData,
     file,
@@ -120,4 +120,4 @@ const UpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
   );
 };
 
-export default UpdateForm;
+export default StudentUpdateForm;

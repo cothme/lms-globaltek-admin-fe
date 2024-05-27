@@ -1,5 +1,5 @@
 import StudentProfileV2 from "./StudentProfilePageComponents/StudentProfileV2";
-import UpdateForm from "./StudentProfilePageComponents/UpdateForm";
+import StudentUpdateForm from "./StudentProfilePageComponents/StudentUpdateForm";
 import useFetchStudent from "../hooks/student hooks/useFetchStudent";
 
 const StudentProfilePage = () => {
@@ -9,7 +9,7 @@ const StudentProfilePage = () => {
     <>
       <div className="lg:ml-60">
         <StudentProfileV2 users={users} />
-        <UpdateForm users={users} />
+        <StudentUpdateForm users={users} />
       </div>
     </>
   );
