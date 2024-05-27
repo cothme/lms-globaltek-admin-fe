@@ -22,6 +22,13 @@ interface updateFormData {
 }
 
 const UpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (e: any) => {
+    setFile(e.target.files[0]);
+    console.log(file);
+    setIsModified(true);
+  };
   const { user } = useAuthContext();
   const [formData, setFormData] = useState<updateFormData>({
     family_name: "",
@@ -68,8 +75,10 @@ const UpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
     if (response.ok) {
       toastNotify("Update successful! Please refresh");
       console.log("Update successful");
+      console.log(file);
     } else {
       console.log("Update failed!", formData);
+      console.log(file);
     }
   };
 
@@ -145,6 +154,26 @@ const UpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
                 id="email"
                 type="text"
                 value={formData.email}
+              />
+            </div>
+          </div>
+          <div className="md:flex md:items-center mb-6">
+            <div className="md:w-1/3">
+              <label className="block text-white font-bold md:text-right mb-1 md:mb-0 pr-4">
+                File
+                {formData.email !== users?.email && (
+                  <span className="text-red-600">*</span>
+                )}
+              </label>
+            </div>
+            <div className="md:w-2/3">
+              <input
+                onChange={handleFileChange}
+                className="bg-white border-gray-200 rounded w-full py-2 px-4 text-gray-700"
+                id="file"
+                type="file"
+                name="uploaded_file"
+                formEncType="multipart/form-data"
               />
             </div>
           </div>
