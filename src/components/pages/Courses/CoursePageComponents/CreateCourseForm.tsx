@@ -1,77 +1,7 @@
-import React, { useState } from "react";
-import useAuthContext from "../../../hooks/useAuthContext";
-import { toastNotify } from "../../../helpers/toastNotify";
-import { json } from "react-router-dom";
-
-interface createCourseData {
-  course_title: string;
-  course_description: string;
-  course_code: string;
-  difficulty: number | null;
-  publisher: string;
-  required_subscription: string;
-}
+import useCreateCourse from "../../../hooks/course hooks/useCreateCourse";
 
 const CreateCourseForm = () => {
-  const { user } = useAuthContext();
-  const [formData, setFormData] = useState<createCourseData>({
-    course_title: "",
-    course_description: "",
-    course_code: "",
-    difficulty: null,
-    publisher: user.user_name,
-    required_subscription: "",
-  });
-
-  const createCourse = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${user.jwt}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    );
-    const json = await response.json();
-
-    if (response.ok) {
-      toastNotify("Course created!");
-    } else {
-      toastNotify(json.error);
-    }
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    const { id, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    createCourse();
-    resetFields();
-    console.log("Form submitted:", formData);
-  };
-  const resetFields = () => {
-    setFormData({
-      course_title: "",
-      course_description: "",
-      course_code: "",
-      difficulty: null,
-      publisher: user.user_name,
-      required_subscription: "",
-    });
-  };
+  const { handleChange, handleSubmit, formData } = useCreateCourse();
 
   return (
     <form
