@@ -1,34 +1,11 @@
-import { useEffect, useState } from "react";
-import useAuthContext from "../hooks/useAuthContext";
-
-interface User {
-  _id: string;
-  family_name: string;
-  given_name: string;
-  email: string;
-}
+import { useFetchAllStudents } from "../hooks/student hooks/useFetchAllStudents";
 
 const StudentsPage = () => {
-  const { user } = useAuthContext();
-  const [users, setUsers] = useState<User[]>([]);
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.jwt}`,
-          },
-        }
-      );
-      const json = await response.json();
-      setUsers(json);
-      if (response.ok) {
-        setUsers(json.users);
-      }
-    };
-    fetchUsers();
-  }, []);
+  const { users, loading, error } = useFetchAllStudents();
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <>
       <div className="lg:ml-60">
