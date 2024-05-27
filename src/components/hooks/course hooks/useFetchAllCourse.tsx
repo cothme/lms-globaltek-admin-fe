@@ -1,26 +1,20 @@
 import { useState, useEffect } from "react";
 import useAuthContext from "../useAuthContext";
-
-interface User {
-  _id: string;
-  family_name: string;
-  given_name: string;
-  email: string;
-}
+import Course from "../../interfaces/Course";
 
 export const useFetchAllCourse = () => {
   const { user } = useAuthContext();
-  const [users, setUsers] = useState<User[]>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchCourses = async () => {
       setLoading(true);
       setError(null);
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user`,
+          `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course`,
           {
             headers: {
               Authorization: `Bearer ${user.jwt}`,
@@ -29,21 +23,18 @@ export const useFetchAllCourse = () => {
         );
         const json = await response.json();
         if (response.ok) {
-          setUsers(json.users);
+          setCourses(json.courses);
         } else {
-          setError(json.message || "Failed to fetch users");
+          setError(json.message || "Failed to fetch courses");
         }
       } catch (err: any) {
-        setError(err.message || "Failed to fetch users");
+        setError(err.message || "Failed to fetch courses");
       } finally {
         setLoading(false);
       }
     };
+    fetchCourses();
+  }, []);
 
-    if (user.jwt) {
-      fetchUsers();
-    }
-  }, [user.jwt]);
-
-  return { users, loading, error };
+  return { courses, loading, error };
 };

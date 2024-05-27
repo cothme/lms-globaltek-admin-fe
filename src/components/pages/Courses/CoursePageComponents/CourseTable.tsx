@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuthContext from "../../../hooks/useAuthContext";
+import { useFetchAllCourse } from "../../../hooks/course hooks/useFetchAllCourse";
 
 interface Course {
   _id: string;
@@ -10,26 +11,8 @@ interface Course {
 }
 
 const CourseTable = () => {
-  const { user } = useAuthContext();
-  const [courses, setCourses] = useState<Course[]>([]);
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.jwt}`,
-          },
-        }
-      );
-      const json = await response.json();
-      setCourses(json);
-      if (response.ok) {
-        setCourses(json.courses);
-      }
-    };
-    fetchUsers();
-  }, []);
+  const { courses, loading, error } = useFetchAllCourse();
+
   return (
     <>
       <div className="overflow-x-auto">
