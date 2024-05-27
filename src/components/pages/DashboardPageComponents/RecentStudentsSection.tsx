@@ -1,13 +1,4 @@
-import { useEffect, useState } from "react";
-import useAuthContext from "../../hooks/useAuthContext";
 import useFetchAllStudentsWithCount from "../../hooks/student hooks/useFetchAllStudentsWithCount";
-
-interface User {
-  _id: string;
-  family_name: string;
-  given_name: string;
-  email: string;
-}
 
 const RecentStudentsSection = () => {
   const { users, loading, error } = useFetchAllStudentsWithCount(3);
