@@ -1,61 +1,8 @@
-import { useEffect, useState } from "react";
-import useAuthContext from "../../hooks/useAuthContext";
+import useFetchCounts from "../../hooks/course hooks/useFetchCounts";
 
 const StatisticsSection = () => {
-  const [userCount, setUserCount] = useState(0);
-  const [courseCount, setCourseCount] = useState(0);
-  const [adminCount, setAdminCount] = useState(0);
-  const { user } = useAuthContext();
-  useEffect(() => {
-    const fetchCourses = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.jwt}`,
-          },
-        }
-      );
-      const json = await response.json();
-      setCourseCount(json);
-      if (response.ok) {
-        setCourseCount(json.courseCount);
-      }
-    };
-    fetchCourses();
-    const fetchAdmins = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/admin`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.jwt}`,
-          },
-        }
-      );
-      const json = await response.json();
-      setAdminCount(json);
-      if (response.ok) {
-        setAdminCount(json.adminCount);
-      }
-    };
-    fetchAdmins();
-    const fetchUsers = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.jwt}`,
-          },
-        }
-      );
-      const json = await response.json();
-      setUserCount(json);
-      if (response.ok) {
-        setUserCount(json.userCount);
-      }
-    };
-    fetchUsers();
-  }, []);
+  const { userCount, adminCount, courseCount, loading, error } =
+    useFetchCounts();
   return (
     <>
       <div className="flex md:flex-row flex-col">
