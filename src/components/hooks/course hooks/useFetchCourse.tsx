@@ -34,7 +34,7 @@ const useFetchCourse = (courseId: string | undefined) => {
         }
       } catch (err: any) {
         setError(err.message || "Failed to fetch course");
-        navigate("/mycourses");
+        navigate("/courses");
       } finally {
         setLoading(false);
       }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAuthContext from "../../../hooks/useAuthContext";
 import { toastNotify } from "../../../helpers/toastNotify";
 import { useParams } from "react-router-dom";
+import useUpdateCourse from "../../../hooks/course hooks/useUpdateCourse";
 
 interface Course {
   course_title: string;
@@ -12,96 +13,23 @@ interface Course {
 }
 
 const UpdateCourseForm = () => {
-  const [course, setCourse] = useState<Course | null>(null);
   const { courseId } = useParams();
-  const { user } = useAuthContext();
-  const [formData, setFormData] = useState<Course>({
-    course_title: "",
-    course_description: "",
-    course_code: "",
-    publisher: user.user_name,
-    required_subscription: "",
-  });
-
-  useEffect(() => {
-    const fetchCourse = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/${courseId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.jwt}`,
-          },
-        }
-      );
-      const json = await response.json();
-      if (response.ok) {
-        setCourse(json);
-        setFormData({
-          course_title: json.course_title,
-          course_description: json.course_description,
-          course_code: json.course_code,
-          publisher: json.publisher,
-          required_subscription: json.required_subscription,
-        });
-      }
-    };
-    fetchCourse();
-  }, [courseId, user.jwt]);
-
-  const updatedCourse = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/${courseId}`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${user.jwt}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    );
-    const json = await response.json();
-
-    if (response.ok) {
-      toastNotify("Course updated!");
-    } else {
-      toastNotify(json.error);
-    }
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    const { id, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    updatedCourse();
-    resetFields();
-    console.log("Form submitted:", formData);
-    console.log(courseId);
+    handleSubmit();
   };
-
-  const resetFields = () => {
-    setFormData({
-      course_title: "",
-      course_description: "",
-      course_code: "",
-      publisher: user.user_name,
-      required_subscription: "",
-    });
-  };
-
+  const {
+    formData,
+    loading,
+    error,
+    handleChange,
+    handleSubmit,
+    resetFields,
+    course,
+  } = useUpdateCourse(courseId);
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleUpdate}
       className="w-5/6 h-1/2 border border-black mx-auto p-4 bg-white shadow-md rounded-lg"
     >
       <div className="flex flex-row gap-5">
