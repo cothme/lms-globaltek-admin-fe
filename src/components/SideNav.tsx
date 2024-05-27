@@ -52,9 +52,6 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
                       All Courses
                     </NavLink>
                   </li>
-                  <li>
-                    <a>My Courses</a>
-                  </li>
                 </ul>
               </details>
             </li>

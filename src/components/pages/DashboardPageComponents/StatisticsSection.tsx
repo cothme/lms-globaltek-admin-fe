@@ -1,4 +1,4 @@
-import useFetchCounts from "../../hooks/course hooks/useFetchCounts";
+import useFetchCounts from "../../hooks/useFetchCounts";
 
 const StatisticsSection = () => {
   const { userCount, adminCount, courseCount, loading, error } =

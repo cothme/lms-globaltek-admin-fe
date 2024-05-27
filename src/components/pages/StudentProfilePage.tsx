@@ -1,40 +1,10 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import useAuthContext from "../hooks/useAuthContext";
 import StudentProfileV2 from "./StudentProfilePageComponents/StudentProfileV2";
 import UpdateForm from "./StudentProfilePageComponents/UpdateForm";
-
-interface User {
-  _id: string;
-  family_name: string;
-  given_name: string;
-  email: string;
-  isFromGoogle: boolean;
-  createdAt: string;
-}
+import useFetchStudent from "../hooks/student hooks/useFetchStudent";
 
 const StudentProfilePage = () => {
-  const [users, setUser] = useState<User | null>(null);
-  const { user } = useAuthContext();
-  useEffect(() => {
-    const fetchUser = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.jwt}`,
-          },
-        }
-      );
-      const json = await response.json();
-      setUser(json);
-      if (response.ok) {
-        setUser(json);
-      }
-    };
-    fetchUser();
-  }, []);
-  const { id } = useParams();
+  const { users, loading, error } = useFetchStudent();
+
   return (
     <>
       <div className="lg:ml-60">

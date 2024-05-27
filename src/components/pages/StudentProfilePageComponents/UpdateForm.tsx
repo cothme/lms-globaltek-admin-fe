@@ -1,24 +1,16 @@
 import React, { useState, useEffect } from "react";
 import useAuthContext from "../../hooks/useAuthContext";
 import { toastNotify } from "../../helpers/toastNotify";
-
-interface User {
-  _id: string;
-  family_name: string;
-  given_name: string;
-  email: string;
-  isFromGoogle: boolean;
-  createdAt: string;
-}
+import User from "../../interfaces/User";
 
 interface UserProp {
   users: User | null;
 }
 
 interface updateFormData {
-  family_name: string;
-  given_name: string;
-  email: string;
+  family_name?: string;
+  given_name?: string;
+  email?: string;
 }
 
 const UpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {

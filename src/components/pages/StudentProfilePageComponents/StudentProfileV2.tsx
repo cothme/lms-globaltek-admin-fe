@@ -1,11 +1,4 @@
-interface User {
-  _id: string;
-  family_name: string;
-  given_name: string;
-  email: string;
-  isFromGoogle: boolean;
-  createdAt: string;
-}
+import User from "../../interfaces/User";
 
 interface UserProp {
   users: User | null;

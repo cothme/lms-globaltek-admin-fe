@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useAuthContext from "../useAuthContext";
+import useAuthContext from "./useAuthContext";
 
 const useFetchCounts = () => {
   const { user } = useAuthContext();
