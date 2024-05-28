@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
-import CourseProfile from "./CourseProfilePageComponents/CourseProfile";
+import CourseProfileHeader from "./CourseProfilePageComponents/CourseProfileHeader";
 import useFetchCourse from "../../hooks/course hooks/useFetchCourse";
+import CourseProfileBody from "./CourseProfilePageComponents/CourseProfileBody";
 
 const CourseProfilePage = () => {
   const { courseId } = useParams();
@@ -9,7 +10,8 @@ const CourseProfilePage = () => {
   return (
     <>
       <div className="lg:ml-60">
-        <CourseProfile course={course} setCourse={setCourse} />
+        <CourseProfileHeader course={course} setCourse={setCourse} />
+        <CourseProfileBody />
       </div>
     </>
   );

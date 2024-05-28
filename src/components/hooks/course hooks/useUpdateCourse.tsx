@@ -3,6 +3,7 @@ import Course from "../../interfaces/Course";
 import { toastNotify } from "../../helpers/toastNotify";
 import { useNavigate } from "react-router-dom";
 import useAuthContext from "../useAuthContext";
+import swal from "sweetalert";
 
 const useUpdateCourse = (courseId: string | undefined) => {
   const { user } = useAuthContext();
@@ -74,10 +75,13 @@ const useUpdateCourse = (courseId: string | undefined) => {
       if (response.ok) {
         toastNotify("Course updated!");
       } else {
-        toastNotify(json.error);
+        throw new Error();
       }
-    } catch (err: any) {
-      toastNotify(err.message || "Failed to update course");
+    } catch (error: any) {
+      swal({
+        icon: "error",
+        text: String(error + ": Unauthorized"),
+      });
     }
   };
 

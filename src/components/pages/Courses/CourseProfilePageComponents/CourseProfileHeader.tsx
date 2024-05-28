@@ -6,7 +6,7 @@ interface CourseProp {
   setCourse: (course: Course) => void;
 }
 
-const CourseProfile: React.FC<CourseProp> = ({
+const CourseProfileHeader: React.FC<CourseProp> = ({
   course,
   setCourse,
 }: CourseProp) => {
@@ -16,7 +16,7 @@ const CourseProfile: React.FC<CourseProp> = ({
   );
   return (
     <>
-      <div className="text-4xl breadcrumbs font-garetheavy text-theme-blue m-4">
+      <div className="text-3xl breadcrumbs font-garetheavy text-theme-blue m-4">
         <ul>
           <li>
             <a href="/courses">Course</a>
@@ -26,17 +26,14 @@ const CourseProfile: React.FC<CourseProp> = ({
           </li>
         </ul>
       </div>
-      <div className="relative rounded-lg m-8 min-w-screen bg-theme-blue shadow-2xl">
+      <div className="relative rounded-lg m-4 bg-theme-blue shadow-2xl">
         <div className="flex items-center z-10">
-          <div className=" text-white lg:text-4xl font-garet m-10">
+          <div className=" text-white lg:text-2xl font-garet m-10">
             {course?.course_title}
-          </div>
-          <div className=" text-white lg:text-4xl font-garet m-10">
-            Is Published: {String(course?.published)}
           </div>
         </div>
       </div>
-      <div className="flex flex-row">
+      <div className="flex flex-col lg:flex-row">
         <button
           onClick={handlePublishClick}
           className={`btn ${
@@ -63,4 +60,4 @@ const CourseProfile: React.FC<CourseProp> = ({
   );
 };
 
-export default CourseProfile;
+export default CourseProfileHeader;

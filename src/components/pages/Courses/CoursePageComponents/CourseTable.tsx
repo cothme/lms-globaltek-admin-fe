@@ -1,14 +1,4 @@
-import { useEffect, useState } from "react";
-import useAuthContext from "../../../hooks/useAuthContext";
 import { useFetchAllCourse } from "../../../hooks/course hooks/useFetchAllCourse";
-
-interface Course {
-  _id: string;
-  course_code: string;
-  course_title: string;
-  publisher: string;
-  published: boolean;
-}
 
 const CourseTable = () => {
   const { courses, loading, error } = useFetchAllCourse();

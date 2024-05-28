@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <GoogleOAuthProvider clientId={import.meta.env.VITE_REACT_APP_CLIENT_ID}>
         <ToastContainer
           position="top-right"
-          autoClose={3000}
+          autoClose={1000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
