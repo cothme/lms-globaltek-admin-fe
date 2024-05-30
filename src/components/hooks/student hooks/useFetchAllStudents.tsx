@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import useAuthContext from "../useAuthContext";
-
-interface User {
-  _id: string;
-  family_name: string;
-  given_name: string;
-  email: string;
-}
+import User from "../../interfaces/User";
 
 export const useFetchAllStudents = () => {
   const { user } = useAuthContext();

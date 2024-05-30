@@ -1,4 +1,3 @@
-import React from "react";
 import CreateCourseForm from "./CoursePageComponents/CreateCourseForm";
 
 const CreateCoursePage = () => {

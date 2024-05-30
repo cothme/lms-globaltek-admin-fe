@@ -17,7 +17,7 @@ const StudentProfileV2: React.FC<UserProp> = ({ users }: UserProp) => {
           </li>
         </ul>
       </div>
-      <div className="relative rounded-lg m-8 min-w-screen h-[20vh] lg:h-[24vh] bg-theme-blue shadow-2xl">
+      <div className="relative rounded-lg m-8 min-w-screen h-[20vh] lg:h-[24vh] bg-theme-blue ">
         <div className="relative flex items-center z-10 ">
           <img
             className="ml-8 mt-6 w-32 lg:w-32 rounded-xl"

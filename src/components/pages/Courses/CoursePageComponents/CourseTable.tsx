@@ -14,6 +14,7 @@ const CourseTable = () => {
               <th>Course Title</th>
               <th>Publisher</th>
               <th>Status</th>
+              <th>Status</th>
               <th></th>
             </tr>
           </thead>
@@ -33,6 +34,7 @@ const CourseTable = () => {
                     {course.published ? "Published" : "Not Published"}
                   </span>
                 </td>
+                <td>{course.required_subscription}</td>
                 <td>
                   <a
                     href={`courses/${course._id}`}

@@ -1,14 +1,17 @@
 import User from "../../interfaces/User";
 import { useUpdateStudentForm } from "../../hooks/student hooks/useUpdateStudentForm";
+import StudentCoursesEnrolled from "./StudentCoursesEnrolled";
+import { useParams } from "react-router-dom";
 
 interface UserProp {
   users: User | null;
 }
 
 const StudentUpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
+  const { id } = useParams();
   const {
     formData,
-    file,
+    // file,
     isModified,
     handleChange,
     handleFileChange,
@@ -17,13 +20,11 @@ const StudentUpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
 
   return (
     <>
-      <div className="flex flex-row bg-theme-blue m-8 p-4 rounded-xl">
+      <div className="flex flex-col lg:flex-row bg-theme-blue m-8 p-4 rounded-xl">
         <div></div>
         <form onSubmit={updateUser} className="w-full max-w-sm">
-          <div className="relative text-3xl m-4 mt-0">
-            <span className="font-garetheavy text-theme-gold">
-              Account Details
-            </span>
+          <div className="relative text-2xl m-4 mt-0">
+            <span className="font-garet text-white">Account Details</span>
           </div>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
@@ -110,10 +111,11 @@ const StudentUpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
             </div>
           )}
         </form>
-        <div className="justify-self-end relative text-3xl m-4 mt-0">
-          <span className="font-garetheavy text-theme-gold">
+        <div className="flex flex-col">
+          <span className="font-garet text-2xl text-white">
             Courses Enrolled
           </span>
+          <StudentCoursesEnrolled id={id} />
         </div>
       </div>
     </>

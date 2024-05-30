@@ -26,7 +26,7 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
           </li>
         </ul>
       </div>
-      <div className="relative rounded-lg m-4 bg-theme-blue shadow-2xl">
+      <div className="relative rounded-lg m-4 bg-theme-blue">
         <div className="flex items-center z-10">
           <div className=" text-white lg:text-2xl font-garet m-10">
             {course?.course_title}
@@ -37,7 +37,7 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
         <button
           onClick={handlePublishClick}
           className={`btn ${
-            course?.published ? "btn-secondary" : "bg-yellow-300"
+            course?.published ? "btn-neutral" : "bg-yellow-300"
           } font-garet m-4`}
           disabled={isPublishing}
         >

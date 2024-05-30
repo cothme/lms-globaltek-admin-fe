@@ -1,7 +1,10 @@
 import { useState } from "react";
 import CourseProfileOverview from "./CourseProfileOverview";
+import CourseSubscribers, { Subscribers } from "./CourseProfileSubscribers";
+import { useParams } from "react-router-dom";
 
 const CourseProfileBody = () => {
+  const { courseId } = useParams();
   const [activeTab, setActiveTab] = useState("Overview");
 
   const handleTabClick = (tab: string) => {
@@ -14,20 +17,20 @@ const CourseProfileBody = () => {
           <a onClick={() => handleTabClick("Overview")}>Overview</a>
         </li>
         <li>
-          <a onClick={() => handleTabClick("Tab 2")}>Modules</a>
+          <a onClick={() => handleTabClick("Modules")}>Modules</a>
         </li>
         <li>
-          <a onClick={() => handleTabClick("Tab 3")}>Quizzes</a>
+          <a onClick={() => handleTabClick("Quizzes")}>Quizzes</a>
         </li>
         <li>
-          <a onClick={() => handleTabClick("Tab 4")}>People</a>
+          <a onClick={() => handleTabClick("People")}>People</a>
         </li>
       </ul>
       <div className="">
         {activeTab === "Overview" && <CourseProfileOverview />}
-        {activeTab === "Tab 2" && <div>This is content for Modules</div>}
-        {activeTab === "Tab 3" && <div>This is content for Quizzes</div>}
-        {activeTab === "Tab 4" && <div>This is content for People</div>}
+        {activeTab === "Modules" && <div>This is content for Modules</div>}
+        {activeTab === "Quizzes" && <div>This is content for Quizzes</div>}
+        {activeTab === "People" && <Subscribers id={courseId} />}
       </div>
     </>
   );
