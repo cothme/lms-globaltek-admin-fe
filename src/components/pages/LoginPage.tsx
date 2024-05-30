@@ -49,6 +49,13 @@ const LoginPage = () => {
   const resetFields = () => {
     setFormData(defaultFormData);
   };
+  if (isLoading) {
+    return (
+      <button className="btn btn-square">
+        <span className="loading loading-spinner"></span>
+      </button>
+    );
+  }
   return (
     <>
       <WoodBackground />

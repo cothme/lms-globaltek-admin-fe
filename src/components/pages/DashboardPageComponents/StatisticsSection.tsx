@@ -7,7 +7,7 @@ const StatisticsSection = () => {
     <>
       <div className="flex md:flex-row flex-col">
         <div
-          className="bg-gradient-to-r from-theme-maroon from-25% via-theme-gold via-100% 
+          className="bg-gradient-to-r from-theme-blue to-theme-maroon
           w-full
           text-white
           p-6 m-4 h-1/4
@@ -21,7 +21,7 @@ const StatisticsSection = () => {
           </div>
         </div>
         <div
-          className="bg-gradient-to-r from-theme-gold from-25% via-theme-gold via-100% 
+          className="bg-gradient-to-r from-theme-maroon from-25% via-theme-maroon via-100% 
           w-full
           text-white
           p-6 m-4 h-1/4
@@ -34,7 +34,7 @@ const StatisticsSection = () => {
           </div>
         </div>
         <div
-          className="bg-gradient-to-r from-theme-gold from-25% via-theme-maroon via-100% 
+          className="bg-gradient-to-l from-theme-blue to-theme-maroon 
           w-full
           text-white
           p-6 m-4 h-1/4

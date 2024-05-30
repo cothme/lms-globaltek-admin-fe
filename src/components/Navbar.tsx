@@ -56,6 +56,7 @@ const Nav = () => {
                 {user.given_name + " " + user.family_name}
               </div>
               <button
+                data-testid="logout-button"
                 onClick={handleLogout}
                 className="text-3xl text-white font-garet"
               >

@@ -24,6 +24,7 @@ const StudentsPage = () => {
                 <th>Family Name</th>
                 <th>Given Name</th>
                 <th>Email</th>
+                <th>Subscription</th>
                 <th></th>
               </tr>
             </thead>
@@ -54,6 +55,7 @@ const StudentsPage = () => {
                     </span>
                   </td>
                   <td>{user.email}</td>
+                  <td>{user.subscription_tier}</td>
                   <th>
                     <a
                       href={`students/profile/${user._id}`}

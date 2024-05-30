@@ -9,10 +9,7 @@ const GreetingsSection: React.FC<userName> = ({ greetingName }) => {
     <>
       <div className="text-4xl font-garet m-4">
         Hello,{" "}
-        <span className="font-garetheavy text-theme-maroon">
-          {greetingName}
-        </span>
-        !
+        <span className="font-garetheavy text-theme-blue">{greetingName}</span>!
       </div>
     </>
   );
