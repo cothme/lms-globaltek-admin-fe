@@ -80,7 +80,7 @@ const LoginPage = () => {
                 value={formData.user_name}
                 placeholder="Username"
                 role="text-field"
-                data-testid="login-signup-button"
+                data-testid="username-login-field"
               />
             </div>
             <div className="">
@@ -94,6 +94,7 @@ const LoginPage = () => {
                 value={formData.password}
                 type="password"
                 placeholder="*************"
+                data-testid="password-login-field"
               />
             </div>
             <div className="flex justify-center">
@@ -102,6 +103,7 @@ const LoginPage = () => {
                   disabled={isLoading}
                   className="bg-theme-blue hover:bg-theme-gold duration-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline font-serif"
                   type="submit"
+                  data-testid="login-button"
                 >
                   Sign In
                 </button>
@@ -115,6 +117,7 @@ const LoginPage = () => {
             </div>
             <div className="flex justify-center">
               <GoogleLogin
+                data-testid="google-login-button"
                 onSuccess={(credentialResponse) => {
                   const token = credentialResponse.credential;
 
