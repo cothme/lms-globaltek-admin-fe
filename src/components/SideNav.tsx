@@ -67,6 +67,7 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
                 {user.given_name + " " + user.family_name}
               </div>
               <button
+                data-testid="logout-button"
                 onClick={logout}
                 className="w-full p-4 hover:bg-black duration-200 rounded-2xl bg-red-700 text-center"
               >
