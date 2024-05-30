@@ -115,9 +115,11 @@ const LoginPage = () => {
                 Or
               </h1>
             </div>
-            <div className="flex justify-center">
+            <div
+              data-testid="google-login-button"
+              className="flex justify-center"
+            >
               <GoogleLogin
-                data-testid="google-login-button"
                 onSuccess={(credentialResponse) => {
                   const token = credentialResponse.credential;
 
