@@ -5,5 +5,6 @@ export default interface Course {
   course_code?: string;
   publisher?: string;
   required_subscription?: string;
+  topics?: [];
   published?: boolean;
 }
