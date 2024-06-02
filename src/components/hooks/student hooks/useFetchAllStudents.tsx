@@ -14,7 +14,7 @@ export const useFetchAllStudents = () => {
       setError(null);
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user`,
+          `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user/`,
           {
             headers: {
               Authorization: `Bearer ${user.jwt}`,
