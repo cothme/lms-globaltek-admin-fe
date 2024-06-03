@@ -1,5 +1,3 @@
-import React from "react";
-
 const NotFoundPage = () => {
   return (
     <div className="relative min-w-screen min-h-screen flex items-center lg:flex-row md:flex-col sm:flex-col justify-center">

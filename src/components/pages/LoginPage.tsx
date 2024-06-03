@@ -1,9 +1,9 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import WoodBackground from "../WoodBackground";
 import { useLogin } from "../hooks/useLogin";
+import LoadingScreen from "../helpers/LoadingScreen";
 
 interface userGoogle {
   family_name: string;
@@ -22,7 +22,6 @@ const defaultFormData = {
 const LoginPage = () => {
   const { loginGoogle, login, error, isLoading } = useLogin();
 
-  const navigate = useNavigate();
   const [formData, setFormData] = useState(defaultFormData);
   const { user_name, password } = formData;
 
@@ -50,11 +49,10 @@ const LoginPage = () => {
     setFormData(defaultFormData);
   };
   if (isLoading) {
-    return (
-      <button className="btn btn-square">
-        <span className="loading loading-spinner"></span>
-      </button>
-    );
+    return <LoadingScreen />;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
   }
   return (
     <>

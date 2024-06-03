@@ -1,8 +1,15 @@
+import LoadingScreen from "../../helpers/LoadingScreen";
 import useFetchCounts from "../../hooks/useFetchCounts";
 
 const StatisticsSection = () => {
   const { userCount, adminCount, courseCount, loading, error } =
     useFetchCounts();
+  if (loading) {
+    return <LoadingScreen />;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
   return (
     <>
       <div className="flex md:flex-row flex-col">

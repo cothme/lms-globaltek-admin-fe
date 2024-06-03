@@ -1,10 +1,15 @@
+import LoadingScreen from "../../helpers/LoadingScreen";
 import useFetchAllStudentsWithCount from "../../hooks/student hooks/useFetchAllStudentsWithCount";
 
 const RecentStudentsSection = () => {
   const { users, loading, error } = useFetchAllStudentsWithCount(3);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) {
+    return <LoadingScreen />;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
   return (
     <>
       <div>
