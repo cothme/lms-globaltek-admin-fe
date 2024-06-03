@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { toastNotify } from "../../helpers/toastNotify";
 import useAuthContext from "../useAuthContext";
 import Course from "../../interfaces/Course";
+import { useFetchAllCourse } from "./useFetchAllCourse";
 
 const useCreateCourse = () => {
   const { user } = useAuthContext();
+  const { triggerRefresh } = useFetchAllCourse();
   const [formData, setFormData] = useState<Course>({
     course_title: "",
     course_description: "",
@@ -33,7 +35,7 @@ const useCreateCourse = () => {
       const json = await response.json();
 
       if (response.ok) {
-        toastNotify("Course created!");
+        triggerRefresh();
       } else {
         toastNotify(json.error);
       }
@@ -71,7 +73,15 @@ const useCreateCourse = () => {
       required_subscription: "",
     });
   };
-  return { createCourse, handleChange, handleSubmit, resetFields, formData };
+  return {
+    createCourse,
+    handleChange,
+    handleSubmit,
+    resetFields,
+    formData,
+    loading,
+    error,
+  };
 };
 
 export default useCreateCourse;

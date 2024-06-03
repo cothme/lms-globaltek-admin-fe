@@ -1,4 +1,3 @@
-import useAuthContext from "../../hooks/useAuthContext";
 import CourseTable from "./CoursePageComponents/CourseTable";
 const CoursesPage = () => {
   return (

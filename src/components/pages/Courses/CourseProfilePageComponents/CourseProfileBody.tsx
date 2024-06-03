@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CourseProfileOverview from "./CourseProfileOverview";
 import { Subscribers } from "./CourseProfileSubscribers";
 import { useParams } from "react-router-dom";
@@ -7,8 +7,16 @@ const CourseProfileBody = () => {
   const { courseId } = useParams();
   const [activeTab, setActiveTab] = useState("Overview");
 
+  useEffect(() => {
+    const storedTab = localStorage.getItem("activeTab");
+    if (storedTab) {
+      setActiveTab(storedTab);
+    }
+  }, []);
+
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
+    localStorage.setItem("activeTab", tab);
   };
   return (
     <>

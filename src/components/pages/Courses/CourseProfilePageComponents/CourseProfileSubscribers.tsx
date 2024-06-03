@@ -1,6 +1,7 @@
 import React from "react";
 import useFetchSubscribers from "../../../hooks/course hooks/useFetchSubscribers";
 import User from "../../../interfaces/User";
+import RemoveUserFromCourseButton from "./RemoveUserFromCourseButton";
 
 interface UserProp {
   id: string | null | undefined;
@@ -24,7 +25,7 @@ const NoCourses: React.FC = () => (
   </div>
 );
 
-const CourseSubscribers: React.FC<{ users: User[] }> = ({ users }) => (
+export const CourseSubscribers: React.FC<{ users: User[] }> = ({ users }) => (
   <div className="relative m-10 mt-0">
     <div className="flex flex-col">
       <div className="overflow-x-auto mt-4">
@@ -48,9 +49,7 @@ const CourseSubscribers: React.FC<{ users: User[] }> = ({ users }) => (
 
                 <td>
                   <div className="flex gap-4">
-                    <button className="rounded-md p-2 text-white bg-red-700">
-                      Remove
-                    </button>
+                    <RemoveUserFromCourseButton _id={user._id} />
                   </div>
                 </td>
                 <td>

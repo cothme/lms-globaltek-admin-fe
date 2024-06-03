@@ -3,6 +3,7 @@ import { useFetchAllCourse } from "../../../hooks/course hooks/useFetchAllCourse
 
 const CourseTable = () => {
   const { courses, loading, error } = useFetchAllCourse();
+
   if (loading) {
     return <LoadingScreen />;
   }
@@ -20,7 +21,8 @@ const CourseTable = () => {
               <th>Course Title</th>
               <th>Publisher</th>
               <th>Status</th>
-              <th>Status</th>
+              <th>Required Subscription</th>
+              <th></th>
               <th></th>
             </tr>
           </thead>

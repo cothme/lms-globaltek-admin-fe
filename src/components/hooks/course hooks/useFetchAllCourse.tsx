@@ -7,10 +7,11 @@ export const useFetchAllCourse = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [refresh, setRefresh] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCourses = async () => {
-      setLoading(true);
+      setLoading(false);
       setError(null);
       try {
         const response = await fetch(
@@ -30,11 +31,15 @@ export const useFetchAllCourse = () => {
       } catch (err: any) {
         setError(err.message || "Failed to fetch courses");
       } finally {
-        setLoading(false);
       }
     };
     fetchCourses();
-  }, []);
+  }, [courses]);
 
-  return { courses, loading, error };
+  const triggerRefresh = () => {
+    setRefresh((prev) => !prev);
+    console.log(refresh);
+  };
+
+  return { courses, loading, error, triggerRefresh };
 };

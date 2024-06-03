@@ -36,13 +36,13 @@ const useFetchSubscribers = (id: string | null | undefined) => {
       }
     };
     fetchSubscribers();
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     console.log(subscribers);
   }, [subscribers]);
 
-  return { subscribers, loading, error };
+  return { setSubscribers, subscribers, loading, error };
 };
 
 export default useFetchSubscribers;

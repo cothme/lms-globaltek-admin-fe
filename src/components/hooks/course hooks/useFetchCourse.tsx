@@ -27,7 +27,7 @@ const useFetchCourse = (courseId: string | undefined) => {
         );
         const json = await response.json();
         if (response.ok) {
-          setCourse(json);
+          setCourse(json.course);
         } else {
           setError(json.message || "Failed to fetch course");
           navigate("/courses");
