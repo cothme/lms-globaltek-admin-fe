@@ -27,7 +27,7 @@ const useFetchStudent = () => {
           setUser(json);
         }
       } catch (err: any) {
-        setError(err.message || "Failed to fetch courses");
+        setError(err.message || "Failed to fetch student");
       } finally {
         setLoading(false);
       }

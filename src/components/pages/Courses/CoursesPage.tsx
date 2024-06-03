@@ -1,7 +1,6 @@
 import useAuthContext from "../../hooks/useAuthContext";
 import CourseTable from "./CoursePageComponents/CourseTable";
 const CoursesPage = () => {
-  const { user } = useAuthContext();
   return (
     <>
       <div className="lg:ml-60 flex flex-col">

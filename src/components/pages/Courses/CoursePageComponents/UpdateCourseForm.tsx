@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import useUpdateCourse from "../../../hooks/course hooks/useUpdateCourse";
+import LoadingScreen from "../../../helpers/LoadingScreen";
 
 const UpdateCourseForm = () => {
   const { courseId } = useParams();
@@ -7,15 +8,14 @@ const UpdateCourseForm = () => {
     e.preventDefault();
     handleSubmit();
   };
-  const {
-    formData,
-    loading,
-    error,
-    handleChange,
-    handleSubmit,
-    resetFields,
-    course,
-  } = useUpdateCourse(courseId);
+  const { formData, loading, error, handleChange, handleSubmit } =
+    useUpdateCourse(courseId);
+  if (loading) {
+    return <LoadingScreen />;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
   return (
     <>
       <form

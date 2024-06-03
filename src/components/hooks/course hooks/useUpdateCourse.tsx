@@ -21,6 +21,8 @@ const useUpdateCourse = (courseId: string | undefined) => {
 
   useEffect(() => {
     const fetchCourse = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const response = await fetch(
           `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/${courseId}`,

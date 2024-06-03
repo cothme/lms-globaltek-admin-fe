@@ -1,8 +1,14 @@
+import LoadingScreen from "../../../helpers/LoadingScreen";
 import { useFetchAllCourse } from "../../../hooks/course hooks/useFetchAllCourse";
 
 const CourseTable = () => {
   const { courses, loading, error } = useFetchAllCourse();
-
+  if (loading) {
+    return <LoadingScreen />;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
   return (
     <>
       <div className="overflow-x-auto">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CourseProfileOverview from "./CourseProfileOverview";
-import CourseSubscribers, { Subscribers } from "./CourseProfileSubscribers";
+import { Subscribers } from "./CourseProfileSubscribers";
 import { useParams } from "react-router-dom";
 
 const CourseProfileBody = () => {

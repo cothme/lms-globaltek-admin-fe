@@ -12,25 +12,35 @@ const useCreateCourse = () => {
     publisher: user.user_name,
     required_subscription: "",
   });
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   const createCourse = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${user.jwt}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    );
-    const json = await response.json();
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${user.jwt}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      const json = await response.json();
 
-    if (response.ok) {
-      toastNotify("Course created!");
-    } else {
-      toastNotify(json.error);
+      if (response.ok) {
+        toastNotify("Course created!");
+      } else {
+        toastNotify(json.error);
+      }
+    } catch (err: any) {
+      setError(err.message || "Failed to create course");
+    } finally {
+      setLoading(false);
     }
   };
 
