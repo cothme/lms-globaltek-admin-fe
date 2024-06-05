@@ -88,7 +88,6 @@ const UpdateCourseForm = () => {
             <option value="">Select subscription type</option>
             <option value="Free">Free</option>
             <option value="Premium">Premium</option>
-            <option value="Pro">Pro</option>
           </select>
         </div>
 
