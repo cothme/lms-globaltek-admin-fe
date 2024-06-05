@@ -35,6 +35,7 @@ const useCreateCourse = () => {
       const json = await response.json();
 
       if (response.ok) {
+        toastNotify(json.message || "Course created successfully");
         triggerRefresh();
       } else {
         toastNotify(json.error);

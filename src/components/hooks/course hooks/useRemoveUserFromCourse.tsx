@@ -29,8 +29,6 @@ const useRemoveUserFromCourse = () => {
       if (!response.ok) {
         throw new Error(json.message || "Failed to remove user from course");
       }
-
-      toastNotify("Deleted Successfully!");
       toastNotify(json.message);
       return true; // Indicating success
     } catch (err: any) {

@@ -36,6 +36,7 @@ const CourseTable: React.FC<{ courses: Course[] }> = ({ courses }) => (
               <th>Publisher</th>
               <th>Tier</th>
               <th>Topics</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +50,14 @@ const CourseTable: React.FC<{ courses: Course[] }> = ({ courses }) => (
                   {course.topics && course.topics.length > 0
                     ? course.topics.join(", ")
                     : "No topics"}
+                </td>
+                <td>
+                  <a
+                    className="btn btn-ghost btn-xs"
+                    href={`/courses/${course._id}`}
+                  >
+                    More Details
+                  </a>
                 </td>
               </tr>
             ))}

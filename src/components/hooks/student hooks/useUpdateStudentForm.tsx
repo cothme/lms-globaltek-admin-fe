@@ -58,24 +58,29 @@ export const useUpdateStudentForm = (initialUser: User | null) => {
     e.preventDefault();
     if (!initialUser) return;
 
-    const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user/${initialUser._id}`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${user.jwt}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user/${
+          initialUser._id
+        }`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${user.jwt}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      const json = await response.json();
+      if (response.ok) {
+        toastNotify("Update successful! Please refresh");
+        console.log("Update successful");
+      } else {
+        console.log("Update failed!", formData);
+        toastNotify("Update failed:" + " " + json.error);
       }
-    );
-
-    if (response.ok) {
-      toastNotify("Update successful! Please refresh");
-      console.log("Update successful");
-    } else {
-      console.log("Update failed!", formData);
-    }
+    } catch (err: any) {}
   };
 
   return {

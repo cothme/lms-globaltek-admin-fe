@@ -36,11 +36,11 @@ const useUpdateCourse = (courseId: string | undefined) => {
         if (response.ok) {
           setCourse(json);
           setFormData({
-            course_title: json.course_title,
-            course_description: json.course_description,
-            course_code: json.course_code,
-            publisher: json.publisher,
-            required_subscription: json.required_subscription,
+            course_title: json.course.course_title,
+            course_description: json.course.course_description,
+            course_code: json.course.course_code,
+            publisher: json.course.publisher,
+            required_subscription: json.course.required_subscription,
           });
         } else {
           setError(json.message || "Failed to fetch course");
@@ -72,7 +72,6 @@ const useUpdateCourse = (courseId: string | undefined) => {
           body: JSON.stringify(formData),
         }
       );
-      const json = await response.json();
 
       if (response.ok) {
         toastNotify("Course updated!");
