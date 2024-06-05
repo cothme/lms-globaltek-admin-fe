@@ -74,10 +74,8 @@ const CreateCourseForm = () => {
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg"
           >
-            <option value="">Select subscription type</option>
             <option value="Free">Free</option>
             <option value="Premium">Premium</option>
-            <option value="Pro">Pro</option>
           </select>
         </div>
 
