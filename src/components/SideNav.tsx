@@ -48,7 +48,11 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
                 <summary>Courses</summary>
                 <ul className="text-lg">
                   <li>
-                    <NavLink className="my-2" to="/courses">
+                    <NavLink
+                      data-testid="courses-page"
+                      className="my-2"
+                      to="/courses"
+                    >
                       All Courses
                     </NavLink>
                   </li>
@@ -56,7 +60,11 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
               </details>
             </li>
             <li>
-              <NavLink className="my-2" to="/students">
+              <NavLink
+                data-testid="students-page"
+                className="my-2"
+                to="/students"
+              >
                 Students
               </NavLink>
             </li>

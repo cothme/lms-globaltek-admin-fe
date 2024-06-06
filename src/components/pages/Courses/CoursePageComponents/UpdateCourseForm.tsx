@@ -31,6 +31,8 @@ const UpdateCourseForm = () => {
               Course Code
             </label>
             <input
+              data-testid={`course-code`}
+              role="textfield"
               type="text"
               id="course_code"
               placeholder="e.g, IT0041"
@@ -47,6 +49,8 @@ const UpdateCourseForm = () => {
               Course Title
             </label>
             <input
+              data-testid={`course-name`}
+              role="textfield"
               type="text"
               id="course_title"
               placeholder="e.g. Introduction to Data Analysis"
@@ -65,6 +69,8 @@ const UpdateCourseForm = () => {
             Course Description
           </label>
           <textarea
+            data-testid={`course-details`}
+            role="textfield"
             id="course_description"
             placeholder="Enter course description"
             value={formData.course_description}
@@ -80,6 +86,8 @@ const UpdateCourseForm = () => {
             Subscription Type
           </label>
           <select
+            data-testid={`course-subscription-type`}
+            role="dropdown"
             id="required_subscription"
             value={formData.required_subscription}
             onChange={handleChange}
@@ -92,6 +100,8 @@ const UpdateCourseForm = () => {
 
         <div className="flex justify-between">
           <button
+            data-testid={`edit-course`}
+            role="button"
             type="submit"
             className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
           >

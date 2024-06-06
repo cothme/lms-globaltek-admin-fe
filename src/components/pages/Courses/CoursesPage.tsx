@@ -12,7 +12,12 @@ const CoursesPage = () => {
         </div>
         <div className="flex flex-row justify-center lg:justify-end w-full">
           <div className="">
-            <a href="/courses/create" className="btn btn-accent font-garet m-4">
+            <a
+              data-testid={`add-course`}
+              role="button"
+              href="/courses/create"
+              className="btn btn-accent font-garet m-4"
+            >
               + Add Course
             </a>
           </div>

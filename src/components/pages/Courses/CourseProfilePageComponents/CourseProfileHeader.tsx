@@ -35,6 +35,8 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
       </div>
       <div className="flex flex-col lg:flex-row">
         <button
+          data-testid={`publish-course`}
+          role="button"
           onClick={handlePublishClick}
           className={`btn ${
             course?.published ? "btn-neutral" : "bg-yellow-300"
@@ -50,6 +52,8 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
           Update Course
         </a>
         <button
+          data-testid={`delete-course`}
+          role="button"
           onClick={confirmDelete}
           className="btn bg-red-500 font-garet m-4"
         >
