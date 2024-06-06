@@ -48,12 +48,7 @@ const LoginPage = () => {
   const resetFields = () => {
     setFormData(defaultFormData);
   };
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+
   return (
     <>
       <WoodBackground />

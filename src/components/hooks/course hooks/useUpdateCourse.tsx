@@ -13,7 +13,7 @@ const useUpdateCourse = (courseId: string | undefined) => {
     course_description: "",
     course_code: "",
     publisher: user.user_name,
-    required_subscription: "",
+    required_subscription: "Free",
   });
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -104,7 +104,7 @@ const useUpdateCourse = (courseId: string | undefined) => {
       course_description: "",
       course_code: "",
       publisher: user.user_name,
-      required_subscription: "",
+      required_subscription: "Free",
     });
   };
   return {
