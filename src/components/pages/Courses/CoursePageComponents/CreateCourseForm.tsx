@@ -20,6 +20,7 @@ const CreateCourseForm = () => {
               Course Code
             </label>
             <input
+              required
               data-testid={`course-code`}
               role="textfield"
               type="text"
@@ -38,6 +39,7 @@ const CreateCourseForm = () => {
               Course Title
             </label>
             <input
+              required
               data-testid={`course-title`}
               role="textfield"
               type="text"
@@ -58,6 +60,7 @@ const CreateCourseForm = () => {
             Course Description
           </label>
           <textarea
+            required
             data-testid={`course-details`}
             role="textfield"
             id="course_description"
@@ -75,6 +78,7 @@ const CreateCourseForm = () => {
             Subscription Type
           </label>
           <select
+            required
             data-testid={`course-required-subscription`}
             role="textfield"
             id="required_subscription"
