@@ -3,11 +3,13 @@ import Course from "../../interfaces/Course";
 import { toastNotify } from "../../helpers/toastNotify";
 import { useNavigate } from "react-router-dom";
 import useAuthContext from "../useAuthContext";
+import { useFetchAllCourse } from "./useFetchAllCourse";
 import swal from "sweetalert";
 
 const useUpdateCourse = (courseId: string | undefined) => {
   const { user } = useAuthContext();
   const [course, setCourse] = useState<Course | null>(null);
+
   const [formData, setFormData] = useState<Course>({
     course_title: "",
     course_description: "",
@@ -75,8 +77,10 @@ const useUpdateCourse = (courseId: string | undefined) => {
 
       if (response.ok) {
         toastNotify("Course updated!");
-      } else {
-        throw new Error();
+      } else if (response.status === 400) {
+        toastNotify("Missing fields!");
+      } else if (response.status === 500) {
+        toastNotify("Course already exists!");
       }
     } catch (error: any) {
       swal({
