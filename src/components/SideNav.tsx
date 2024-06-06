@@ -72,7 +72,7 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
             {/* This div will take up all the remaining space */}
             <div className="p-4">
               <div className="text-center text-2xl text-white bg-red-900 rounded-xl p-2 mb-4">
-                {user.given_name + " " + user.family_name}
+                {user.user_name}
               </div>
               <button
                 data-testid="logout-button"

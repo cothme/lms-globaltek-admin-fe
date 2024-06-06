@@ -26,6 +26,8 @@ const useFetchSubscribers = (id: string | null | undefined) => {
         const json = await response.json();
         if (response.ok) {
           setSubscribers(json.subscribers);
+        } else if (response.status === 403) {
+          setError(json.message || "Unauthorized");
         } else {
           setError(json.message || "Failed to fetch subscribers");
         }
