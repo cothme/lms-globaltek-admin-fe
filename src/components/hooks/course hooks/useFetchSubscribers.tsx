@@ -7,6 +7,7 @@ const useFetchSubscribers = (id: string | null | undefined) => {
   const [subscribers, setSubscribers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [refresh, setRefresh] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchSubscribers = async () => {
@@ -38,13 +39,15 @@ const useFetchSubscribers = (id: string | null | undefined) => {
       }
     };
     fetchSubscribers();
-  }, []);
+  }, [refresh]);
 
-  useEffect(() => {
-    console.log(subscribers);
-  }, [subscribers]);
+  const triggerRefresh = () => {
+    console.log(refresh);
 
-  return { setSubscribers, subscribers, loading, error };
+    setRefresh((prev) => !prev);
+  };
+
+  return { triggerRefresh, setSubscribers, subscribers, loading, error };
 };
 
 export default useFetchSubscribers;

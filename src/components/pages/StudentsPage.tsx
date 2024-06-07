@@ -1,3 +1,4 @@
+import { ImSearch } from "react-icons/im";
 import LoadingScreen from "../helpers/LoadingScreen";
 import { useFetchAllStudents } from "../hooks/student hooks/useFetchAllStudents";
 
@@ -20,6 +21,18 @@ const StudentsPage = () => {
               <a href="/students">Student</a>
             </li>
           </ul>
+        </div>
+        <div className="flex-grow mx-4">
+          <div className="relative">
+            <input
+              type="text"
+              className="w-full inline-block border border-gray-300 rounded-lg px-4 py-2 pl-10 focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
+              placeholder="Search"
+            />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <ImSearch className="text-gray-400" />
+            </div>
+          </div>
         </div>
         <div className="overflow-x-auto">
           <table className="table">

@@ -1,5 +1,9 @@
 import Course from "../../../interfaces/Course";
 import useDeleteCourse from "../../../hooks/course hooks/useDeleteCourse";
+import { GrUpdate } from "react-icons/gr";
+import { AiTwotoneDelete } from "react-icons/ai";
+import { MdCheckCircleOutline } from "react-icons/md";
+import { IoIosCheckmarkCircle } from "react-icons/io";
 
 interface CourseProp {
   course: Course | null;
@@ -14,6 +18,8 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
     course,
     setCourse
   );
+  const isPublished = course?.published;
+
   return (
     <>
       <div className="text-3xl breadcrumbs font-garetheavy text-theme-blue m-4">
@@ -28,36 +34,38 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
       </div>
       <div className="relative rounded-lg m-4 bg-theme-blue">
         <div className="flex items-center z-10">
-          <div className=" text-white lg:text-2xl font-garet m-10">
+          <div className="text-white lg:text-2xl font-garet m-10">
             {course?.course_title}
           </div>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row">
+
+      <div className="flex flex-col lg:flex-row m-4 gap-4">
         <button
           data-testid={`publish-course`}
-          role="button"
           onClick={handlePublishClick}
           className={`btn ${
-            course?.published ? "btn-neutral" : "bg-yellow-300"
-          } font-garet m-4`}
+            isPublished ? "btn-neutral" : "btn-warning"
+          } font-garet text-white`}
           disabled={isPublishing}
         >
-          {course?.published ? "Unpublish Course" : "Publish Course"}
+          {isPublished ? <MdCheckCircleOutline /> : <IoIosCheckmarkCircle />}
+          {isPublished ? "Unpublish Course" : "Publish Course"}
         </button>
+
         <a
           href={`/courses/update/${course?._id}`}
-          className="btn bg-green-500 font-garet m-4"
+          className="btn text-white btn-primary font-garet"
         >
-          Update Course
+          <GrUpdate /> Update Course
         </a>
+
         <button
           data-testid={`delete-course`}
-          role="button"
           onClick={confirmDelete}
-          className="btn bg-red-500 font-garet m-4"
+          className="btn text-white btn-error font-garet"
         >
-          Delete Course
+          <AiTwotoneDelete /> Delete Course
         </button>
       </div>
     </>

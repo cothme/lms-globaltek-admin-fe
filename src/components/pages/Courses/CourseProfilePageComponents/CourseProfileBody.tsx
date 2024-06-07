@@ -20,7 +20,7 @@ const CourseProfileBody = () => {
   };
   return (
     <>
-      <ul className="menu menu-vertical w-full sm:menu-horizontal bg-base-200 rounded-box text-lg">
+      <ul className="menu font-garet text-lg text-white w-auto ml-2 sm:menu-horizontal bg-theme-blue rounded-box">
         <li>
           <a onClick={() => handleTabClick("Overview")}>Overview</a>
         </li>

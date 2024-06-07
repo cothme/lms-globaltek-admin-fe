@@ -2,11 +2,13 @@ import { useState } from "react";
 import useAuthContext from "../useAuthContext";
 import { toastNotify } from "../../helpers/toastNotify";
 import swal from "sweetalert";
+import useFetchSubscribers from "./useFetchSubscribers";
 
-const useRemoveUserFromCourse = () => {
+const useRemoveUserFromCourse = (userId: string) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { user } = useAuthContext();
+  const { triggerRefresh } = useFetchSubscribers(userId);
 
   const removeUserFromCourse = async (courseId: string, userId: string) => {
     setLoading(true);
@@ -30,11 +32,12 @@ const useRemoveUserFromCourse = () => {
         throw new Error(json.message || "Failed to remove user from course");
       }
       toastNotify(json.message);
-      return true; // Indicating success
+      triggerRefresh();
+      return true;
     } catch (err: any) {
       setError(err.message);
       toastNotify(err.message);
-      return false; // Indicating failure
+      return false;
     } finally {
       setLoading(false);
     }
