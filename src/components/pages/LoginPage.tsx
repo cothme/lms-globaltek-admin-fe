@@ -3,7 +3,6 @@ import { jwtDecode, JwtPayload } from "jwt-decode";
 import { useState } from "react";
 import WoodBackground from "../WoodBackground";
 import { useLogin } from "../hooks/useLogin";
-import LoadingScreen from "../helpers/LoadingScreen";
 
 interface userGoogle {
   family_name: string;

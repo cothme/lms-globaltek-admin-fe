@@ -4,7 +4,7 @@ import LoginPage from "./components/pages/LoginPage";
 import useAuthContext from "./components/hooks/useAuthContext";
 import MainLayout from "./components/layouts/MainLayout";
 import CoursesPage from "./components/pages/Courses/CoursesPage";
-import AboutPage from "./components/pages/AboutPage";
+
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./components/pages/Dashboard";
 import StudentsPage from "./components/pages/StudentsPage";
@@ -29,7 +29,6 @@ const App = () => {
             }
           >
             <Route index element={<Dashboard />} />
-            <Route path="/about" element={<AboutPage />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/students" element={<StudentsPage />} />
             <Route

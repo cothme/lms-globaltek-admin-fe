@@ -6,7 +6,7 @@ const CourseProfileOverview = () => {
   const { course } = useFetchCourse(courseId);
   return (
     <>
-      <div className="flex justify-center items-center m-4 w-1/2">
+      <div className="flex m-4 w-1/2">
         <div>{course?.course_description}</div>
       </div>
     </>
