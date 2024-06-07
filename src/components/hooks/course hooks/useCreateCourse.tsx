@@ -6,7 +6,7 @@ import { useFetchAllCourse } from "./useFetchAllCourse";
 
 const useCreateCourse = () => {
   const { user } = useAuthContext();
-  const { triggerRefresh } = useFetchAllCourse();
+  const { setRefresh, triggerRefresh, refresh } = useFetchAllCourse();
   const [formData, setFormData] = useState<Course>({
     course_title: "",
     course_description: "",
@@ -37,6 +37,7 @@ const useCreateCourse = () => {
       if (response.ok) {
         toastNotify(json.message || "Course created successfully");
         triggerRefresh();
+        console.log(refresh);
       } else {
         toastNotify(json.error);
       }

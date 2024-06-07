@@ -8,13 +8,21 @@ export const useFetchAllCourse = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [refresh, setRefresh] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [pages, setPages] = useState<number>(1);
+  const limit = 10;
 
   useEffect(() => {
     const fetchCourses = async () => {
+      console.log("fetching courses");
+
+      setLoading(true);
       setError(null);
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course`,
+          `${
+            import.meta.env.VITE_REACT_APP_API_ROOT
+          }/api/course/?limit=${limit}&page=${page}`,
           {
             headers: {
               Authorization: `Bearer ${user.jwt}`,
@@ -23,6 +31,8 @@ export const useFetchAllCourse = () => {
         );
         const json = await response.json();
         if (response.ok) {
+          setLoading(false);
+
           setCourses(json.courses);
         } else if (response.status === 404) {
           setError(json.message || "No courses found");
@@ -32,15 +42,25 @@ export const useFetchAllCourse = () => {
       } catch (err: any) {
         setError(err.message || "Failed to fetch courses");
       } finally {
+        setLoading(false);
       }
     };
     fetchCourses();
-  }, [courses]);
+  }, [refresh]);
 
   const triggerRefresh = () => {
     setRefresh((prev) => !prev);
-    console.log(refresh);
   };
 
-  return { courses, loading, error, triggerRefresh };
+  return {
+    setRefresh,
+    refresh,
+    courses,
+    loading,
+    error,
+    triggerRefresh,
+    page,
+    setPage,
+    pages,
+  };
 };
