@@ -11,7 +11,6 @@ export const useFetchAllCourse = () => {
 
   useEffect(() => {
     const fetchCourses = async () => {
-      setLoading(false);
       setError(null);
       try {
         const response = await fetch(
@@ -25,6 +24,8 @@ export const useFetchAllCourse = () => {
         const json = await response.json();
         if (response.ok) {
           setCourses(json.courses);
+        } else if (response.status === 404) {
+          setError(json.message || "No courses found");
         } else {
           setError(json.message || "Failed to fetch courses");
         }

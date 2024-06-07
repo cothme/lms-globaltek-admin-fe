@@ -40,7 +40,7 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row m-4 gap-4">
+      <div className="flex flex-col lg:flex-row m-4 gap-4 mx-4">
         <button
           data-testid={`publish-course`}
           onClick={handlePublishClick}
@@ -57,7 +57,7 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
           href={`/courses/update/${course?._id}`}
           className="btn text-white btn-primary font-garet"
         >
-          <GrUpdate /> Update Course
+          <GrUpdate /> Edit Course
         </a>
 
         <button

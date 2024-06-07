@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useUpdateCourse from "../../../hooks/course hooks/useUpdateCourse";
 import LoadingScreen from "../../../helpers/LoadingScreen";
+import { FaRegSave } from "react-icons/fa";
 
 const UpdateCourseForm = () => {
   const { courseId } = useParams();
@@ -103,9 +104,10 @@ const UpdateCourseForm = () => {
             data-testid={`edit-course`}
             role="button"
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
+            className="btn btn-primary text-white font-bold py-2 px-4 rounded-lg"
           >
-            Update Course
+            <FaRegSave />
+            Save
           </button>
         </div>
       </form>

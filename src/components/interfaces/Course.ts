@@ -7,4 +7,5 @@ export default interface Course {
   required_subscription?: string;
   topics?: [];
   published?: boolean;
+  createdAt?: string;
 }

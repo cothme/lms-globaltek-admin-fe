@@ -16,25 +16,42 @@ const CourseProfileBody = () => {
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
-    localStorage.setItem("activeTab", tab);
   };
   return (
     <>
-      <ul className="menu font-garet text-lg text-white w-auto ml-2 sm:menu-horizontal bg-theme-blue rounded-box">
-        <li>
+      <ul className="menu gap-4 lg:menu-horizontal md:menu-horizontal font-garet text-lg text-black bg-white rounded-box border border-black mx-4">
+        <li
+          className={
+            activeTab === "Overview"
+              ? "bg-neutral text-gray-100 rounded-lg"
+              : ""
+          }
+        >
           <a onClick={() => handleTabClick("Overview")}>Overview</a>
         </li>
-        <li>
+        <li
+          className={
+            activeTab === "Modules" ? "bg-neutral text-gray-100 rounded-lg" : ""
+          }
+        >
           <a onClick={() => handleTabClick("Modules")}>Modules</a>
         </li>
-        <li>
+        <li
+          className={
+            activeTab === "Quizzes" ? "bg-neutral text-gray-100 rounded-lg" : ""
+          }
+        >
           <a onClick={() => handleTabClick("Quizzes")}>Quizzes</a>
         </li>
-        <li>
+        <li
+          className={
+            activeTab === "People" ? "bg-neutral text-gray-100 rounded-lg" : ""
+          }
+        >
           <a onClick={() => handleTabClick("People")}>People</a>
         </li>
       </ul>
-      <div className="">
+      <div className="p-4 bg-white rounded-box">
         {activeTab === "Overview" && <CourseProfileOverview />}
         {activeTab === "Modules" && <div>This is content for Modules</div>}
         {activeTab === "Quizzes" && <div>This is content for Quizzes</div>}
