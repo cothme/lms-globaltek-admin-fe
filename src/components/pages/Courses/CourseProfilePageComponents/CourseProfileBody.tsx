@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CourseProfileOverview from "./CourseProfileOverview";
-import { Subscribers } from "./CourseProfileSubscribers";
+import { CourseProfileSubscribers } from "./CourseProfileSubscribers";
 import { useParams } from "react-router-dom";
 
 const CourseProfileBody = () => {
@@ -19,7 +19,7 @@ const CourseProfileBody = () => {
   };
   return (
     <>
-      <ul className="menu gap-4 lg:menu-horizontal md:menu-horizontal font-garet text-lg text-black bg-white rounded-box border border-black mx-4">
+      <ul className="menu gap-4 lg:menu-horizontal md:menu-horizontal font-garet text-black rounded-box border border-gray-300 shadow-md mx-4">
         <li
           className={
             activeTab === "Overview"
@@ -55,7 +55,7 @@ const CourseProfileBody = () => {
         {activeTab === "Overview" && <CourseProfileOverview />}
         {activeTab === "Modules" && <div>This is content for Modules</div>}
         {activeTab === "Quizzes" && <div>This is content for Quizzes</div>}
-        {activeTab === "People" && <Subscribers id={courseId} />}
+        {activeTab === "People" && <CourseProfileSubscribers id={courseId} />}
       </div>
     </>
   );

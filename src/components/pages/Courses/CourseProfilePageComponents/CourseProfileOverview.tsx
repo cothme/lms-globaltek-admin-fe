@@ -12,6 +12,10 @@ const CourseProfileOverview = () => {
         <table className="table w-auto">
           <tbody>
             <tr>
+              <th className="font-semibold">Code</th>
+              <td>{course?.course_code}</td>
+            </tr>
+            <tr>
               <th className="font-semibold">Title</th>
               <td>{course?.course_title}</td>
             </tr>

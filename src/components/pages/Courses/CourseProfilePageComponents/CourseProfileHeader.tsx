@@ -4,6 +4,7 @@ import { GrUpdate } from "react-icons/gr";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { MdCheckCircleOutline } from "react-icons/md";
 import { IoIosCheckmarkCircle } from "react-icons/io";
+import CourseBanner from "../../../../assets/course_banner.png";
 
 interface CourseProp {
   course: Course | null;
@@ -32,10 +33,14 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
           </li>
         </ul>
       </div>
-      <div className="relative rounded-lg m-4 bg-theme-blue">
-        <div className="flex items-center z-10">
-          <div className="text-white lg:text-2xl font-garet m-10">
-            {course?.course_title}
+      <div className="relative m-4">
+        <div className="z-10">
+          <div>
+            <img
+              className="lg:w-1/2 shadow-md rounded-box"
+              src={CourseBanner}
+              alt=""
+            />
           </div>
         </div>
       </div>
