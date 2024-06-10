@@ -23,16 +23,6 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
 
   return (
     <>
-      <div className="text-3xl breadcrumbs font-garetheavy text-theme-blue m-4">
-        <ul>
-          <li>
-            <a href="/courses">Course</a>
-          </li>
-          <li>
-            <a href={`/courses/${course?._id}`}>Course Profile</a>
-          </li>
-        </ul>
-      </div>
       <div className="relative m-4">
         <div className="z-10">
           <div>
