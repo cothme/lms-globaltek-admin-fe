@@ -9,7 +9,7 @@ export const useFetchAllCourse = () => {
   const [error, setError] = useState<string | null>(null);
   const [refresh, setRefresh] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
-  const [pages, setPages] = useState<number>(1);
+  const [pages] = useState<number>(1);
   const limit = 10;
 
   useEffect(() => {

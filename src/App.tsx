@@ -13,6 +13,7 @@ import NotFoundPage from "./components/pages/NotFoundPage";
 import CourseProfilePage from "./components/pages/Courses/CourseProfilePage";
 import CreateCoursePage from "./components/pages/Courses/CreateCoursePage";
 import UpdateCoursePage from "./components/pages/UpdateCoursePage";
+import TierMainPage from "./components/pages/Tiers/TierMainPage";
 
 const App = () => {
   const { user } = useAuthContext();
@@ -41,6 +42,7 @@ const App = () => {
               path="/courses/update/:courseId"
               element={<UpdateCoursePage />}
             />
+            <Route path="/tiers" element={<TierMainPage />} />
             <Route path="*" element={<NotFoundPage />}></Route>
           </Route>
           <Route

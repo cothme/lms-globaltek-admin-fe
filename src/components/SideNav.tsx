@@ -68,6 +68,31 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
                 Students
               </NavLink>
             </li>
+            <li>
+              <details open>
+                <summary>Subscription</summary>
+                <ul className="text-lg">
+                  <li>
+                    <NavLink
+                      data-testid="courses-page"
+                      className="my-2"
+                      to="/tiers"
+                    >
+                      Tiers
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      data-testid="courses-page"
+                      className="my-2"
+                      to="/revenue"
+                    >
+                      Revenue
+                    </NavLink>
+                  </li>
+                </ul>
+              </details>
+            </li>
             <div className="flex-grow"></div>{" "}
             {/* This div will take up all the remaining space */}
             <div className="p-4">
