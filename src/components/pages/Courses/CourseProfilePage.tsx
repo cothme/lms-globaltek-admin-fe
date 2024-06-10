@@ -9,7 +9,7 @@ const CourseProfilePage = () => {
 
   return (
     <>
-      <div className="lg:ml-60">
+      <div className="">
         <CourseProfileHeader course={course} setCourse={setCourse} />
         <CourseProfileBody />
       </div>

@@ -4,7 +4,7 @@ import { IoMdAdd } from "react-icons/io";
 const CoursesPage = () => {
   return (
     <>
-      <div className="lg:ml-60 flex flex-col">
+      <div className=" flex flex-col">
         <div className="text-4xl breadcrumbs font-garetheavy text-theme-blue m-4">
           <ul>
             <li>

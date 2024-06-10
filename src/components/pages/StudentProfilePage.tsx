@@ -15,7 +15,7 @@ const StudentProfilePage = () => {
 
   return (
     <>
-      <div className="lg:ml-60">
+      <div className="">
         <StudentProfileV2 users={users} />
         <StudentUpdateForm users={users} />
       </div>

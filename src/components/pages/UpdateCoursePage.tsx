@@ -5,7 +5,7 @@ const UpdateCoursePage = () => {
   const { courseId } = useParams();
   return (
     <>
-      <div className="lg:ml-60">
+      <div className="">
         <div className="text-4xl breadcrumbs font-garetheavy text-theme-blue m-4">
           <ul>
             <li>
