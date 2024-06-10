@@ -6,7 +6,7 @@ const Topbar = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   return (
-    <div className="text-lg breadcrumbs font-garet m-4">
+    <div className="text-xl breadcrumbs font-garet m-4 border border-gray-200  rounded-lg p-4">
       <ul>
         <li>
           <Link to="/">Home</Link>
