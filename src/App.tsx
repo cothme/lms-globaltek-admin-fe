@@ -32,10 +32,7 @@ const App = () => {
             <Route index element={<Dashboard />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/students" element={<StudentsPage />} />
-            <Route
-              path="students/profile/:id"
-              element={<StudentProfilePage />}
-            />
+            <Route path="students/:userName" element={<StudentProfilePage />} />
             <Route path="/courses/:courseId" element={<CourseProfilePage />} />
             <Route path="/courses/create" element={<CreateCoursePage />} />
             <Route

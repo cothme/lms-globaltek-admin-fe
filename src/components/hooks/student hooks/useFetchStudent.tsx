@@ -8,13 +8,13 @@ const useFetchStudent = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { user } = useAuthContext();
-  const { id } = useParams();
+  const { userName } = useParams();
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user/${id}`,
+          `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user/${userName}`,
           {
             headers: {
               Authorization: `Bearer ${user.jwt}`,

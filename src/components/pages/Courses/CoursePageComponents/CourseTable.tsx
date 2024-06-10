@@ -38,7 +38,7 @@ const CourseTable = () => {
                 <td>{course.required_subscription}</td>
                 <td>
                   <a
-                    href={`courses/${course._id}`}
+                    href={`courses/${course.course_title}`}
                     className="btn btn-ghost btn-xs"
                   >
                     More Details

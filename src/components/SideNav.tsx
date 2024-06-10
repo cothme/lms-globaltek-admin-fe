@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { IoListOutline } from "react-icons/io5";
 import { useLogout } from "./hooks/useLogout";
 import { NavLink } from "react-router-dom";

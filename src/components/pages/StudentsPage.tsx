@@ -69,7 +69,7 @@ const StudentsPage = () => {
                 <th>
                   <a
                     data-testid={`select-student-${user._id}`}
-                    href={`students/profile/${user._id}`}
+                    href={`students/${user.user_name}`}
                     className="btn btn-ghost btn-xs"
                   >
                     More Details

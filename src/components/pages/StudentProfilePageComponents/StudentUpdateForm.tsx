@@ -8,7 +8,7 @@ interface UserProp {
 }
 
 const StudentUpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
-  const { id } = useParams();
+  const { userName } = useParams();
   const {
     formData,
     // file,
@@ -115,7 +115,7 @@ const StudentUpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
           <span className="font-garet text-2xl text-white">
             Courses Enrolled
           </span>
-          <StudentCoursesEnrolled id={id} />
+          <StudentCoursesEnrolled userName={userName} />
         </div>
       </div>
     </>

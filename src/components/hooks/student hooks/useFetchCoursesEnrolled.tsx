@@ -9,6 +9,8 @@ const useFetchCoursesEnrolled = (id: string | null | undefined) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    console.log(id);
+
     const fetchCoursesEnrolled = async () => {
       setLoading(true);
       setError(null);

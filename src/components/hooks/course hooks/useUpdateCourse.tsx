@@ -3,7 +3,6 @@ import Course from "../../interfaces/Course";
 import { toastNotify } from "../../helpers/toastNotify";
 import { useNavigate } from "react-router-dom";
 import useAuthContext from "../useAuthContext";
-import { useFetchAllCourse } from "./useFetchAllCourse";
 import swal from "sweetalert";
 
 const useUpdateCourse = (courseId: string | undefined) => {

@@ -3,7 +3,7 @@ import useFetchCoursesEnrolled from "../../hooks/student hooks/useFetchCoursesEn
 import Course from "../../interfaces/Course";
 
 interface UserProp {
-  id: string | null | undefined;
+  userName: string | null | undefined;
 }
 
 const Loading: React.FC = () => (
@@ -68,8 +68,8 @@ const CourseTable: React.FC<{ courses: Course[] }> = ({ courses }) => (
   </div>
 );
 
-const StudentCoursesEnrolled: React.FC<UserProp> = ({ id }) => {
-  const { coursesEnrolled, error, loading } = useFetchCoursesEnrolled(id);
+const StudentCoursesEnrolled: React.FC<UserProp> = ({ userName }) => {
+  const { coursesEnrolled, error, loading } = useFetchCoursesEnrolled(userName);
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
