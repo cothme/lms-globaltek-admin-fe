@@ -13,41 +13,37 @@ const StatisticsSection = () => {
   return (
     <>
       <div className="flex md:flex-row flex-col">
-        <div
+        <a
+          href={"/students"}
           className="bg-gradient-to-r from-theme-blue to-theme-maroon
           w-full
           text-white
           p-6 m-4 h-1/4
-          md:rounded-s-full
-          hover:scale-75
-          duration-500"
+          md:rounded-s-full"
         >
           <div className="font-garet text-center text-3xl">Students</div>
           <div className="font-garetheavy text-center text-4xl mt-4">
             {userCount}
           </div>
-        </div>
-        <div
+        </a>
+        <a
+          href={"/courses"}
           className="bg-gradient-to-r from-theme-maroon from-25% via-theme-maroon via-100% 
           w-full
           text-white
-          p-6 m-4 h-1/4
-          hover:scale-75
-          duration-500"
+          p-6 m-4 h-1/4"
         >
           <div className="font-garet text-center text-3xl">Courses</div>
           <div className="font-garetheavy text-center text-4xl mt-4">
             {courseCount}
           </div>
-        </div>
+        </a>
         <div
           className="bg-gradient-to-l from-theme-blue to-theme-maroon 
           w-full
           text-white
           p-6 m-4 h-1/4
-          md:rounded-e-full
-          hover:scale-75
-          duration-500"
+          md:rounded-e-full"
         >
           <div className="font-garet text-center text-3xl">Admin</div>
           <div className="font-garetheavy text-center text-4xl mt-4">

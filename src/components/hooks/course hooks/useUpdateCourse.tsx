@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Course from "../../interfaces/Course";
 import { toastNotify } from "../../helpers/toastNotify";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import useAuthContext from "../useAuthContext";
+
 import swal from "sweetalert";
 
 const useUpdateCourse = (courseId: string | undefined) => {
@@ -80,6 +81,11 @@ const useUpdateCourse = (courseId: string | undefined) => {
         toastNotify("Missing fields!");
       } else if (response.status === 500) {
         toastNotify("Course already exists!");
+      } else if (response.status === 403) {
+        swal({
+          icon: "error",
+          text: String("Unauthorized"),
+        });
       }
     } catch (error: any) {
       swal({
