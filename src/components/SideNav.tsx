@@ -16,7 +16,7 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
     <>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content justify-center lg:ml-60">
+        <div className="drawer-content justify-center">
           {/* Page content here */}
           <div>
             <label
@@ -34,7 +34,7 @@ const SideNav: React.FC<SideNavProps> = ({ children }) => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="fixed menu w-60 lg:w-60 min-h-screen bg-theme-maroon text-white lg:text-2xl text-lg flex flex-col">
+          <ul className="menu w-60 lg:w-64 min-h-screen bg-theme-maroon text-white lg:text-2xl text-lg flex flex-col">
             {/* Sidebar content here */}
             <img src={Logo} className="relative m-4 lg:w-48 w-40" alt="" />
             {/* <h1 className="text-3xl p-4 font-roboto-light">LinkedLearn</h1> */}

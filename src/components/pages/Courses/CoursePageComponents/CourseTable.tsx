@@ -29,8 +29,8 @@ const CourseTable = () => {
                 <td>
                   <span
                     className={`bg-${
-                      course.published ? "green" : "red"
-                    }-500 font-bold text-white  h-1/2 rounded-lg px-2 p-1 `}
+                      course.published ? "green-500" : "red-600"
+                    } font-bold text-white  h-1/2 rounded-lg px-2 p-1 `}
                   >
                     {course.published ? "Published" : "Not Published"}
                   </span>
