@@ -58,7 +58,7 @@ export const CourseProfileSubscribers: React.FC<UserProp> = ({ id }) => {
               <td>
                 <a
                   className="btn bg-gray-300 p-2 rounded-lg"
-                  href={`/students/profile/${user._id}`}
+                  href={`/students/${user.user_name}`}
                 >
                   More Details
                 </a>

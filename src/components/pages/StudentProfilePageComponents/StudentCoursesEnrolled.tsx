@@ -54,7 +54,7 @@ const CourseTable: React.FC<{ courses: Course[] }> = ({ courses }) => (
                 <td>
                   <a
                     className="btn btn-ghost btn-xs"
-                    href={`/courses/${course._id}`}
+                    href={`/courses/${course.course_title}`}
                   >
                     More Details
                   </a>

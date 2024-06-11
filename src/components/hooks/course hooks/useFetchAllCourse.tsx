@@ -14,8 +14,6 @@ export const useFetchAllCourse = () => {
 
   useEffect(() => {
     const fetchCourses = async () => {
-      console.log("fetching courses");
-
       setLoading(true);
       setError(null);
       try {
