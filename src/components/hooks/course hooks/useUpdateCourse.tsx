@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Course from "../../interfaces/Course";
 import { toastNotify } from "../../helpers/toastNotify";
-import { json, useNavigate } from "react-router-dom";
 import useAuthContext from "../useAuthContext";
-
 import swal from "sweetalert";
+import useFetchCourse from "./useFetchCourse";
 
 const useUpdateCourse = (courseId: string | undefined) => {
   const { user } = useAuthContext();
-  const [course, setCourse] = useState<Course | null>(null);
-
   const [formData, setFormData] = useState<Course>({
     course_title: "",
     course_description: "",
@@ -17,49 +14,19 @@ const useUpdateCourse = (courseId: string | undefined) => {
     publisher: user.user_name,
     required_subscription: "Free",
   });
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
-
+  const { course, loading, error } = useFetchCourse(courseId);
+  const [errors, setErrors] = useState<Partial<Course>>({});
   useEffect(() => {
-    const fetchCourse = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/${courseId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.jwt}`,
-            },
-          }
-        );
-        const json = await response.json();
-        if (response.ok) {
-          setCourse(json);
-          setFormData({
-            course_title: json.course.course_title,
-            course_description: json.course.course_description,
-            course_code: json.course.course_code,
-            publisher: json.course.publisher,
-            required_subscription: json.course.required_subscription,
-          });
-        } else {
-          setError(json.message || "Failed to fetch course");
-          navigate("/courses");
-        }
-      } catch (err: any) {
-        setError(err.message || "Failed to fetch course");
-        navigate("/mycourses");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (courseId) {
-      fetchCourse();
+    if (course) {
+      setFormData({
+        course_title: course.course_title,
+        course_description: course.course_description,
+        course_code: course.course_code,
+        publisher: course.publisher,
+        required_subscription: course.required_subscription,
+      });
     }
-  }, [courseId, navigate, user.jwt]);
+  }, [course]);
 
   const updateCourse = async () => {
     try {
@@ -74,11 +41,24 @@ const useUpdateCourse = (courseId: string | undefined) => {
           body: JSON.stringify(formData),
         }
       );
+      const json = await response.json();
+      const currentErrors: Partial<Course> = {};
 
+      if (!formData.course_code)
+        currentErrors.course_code = "Course Code is required";
+      if (!formData.course_title)
+        currentErrors.course_title = "Course Title is required";
+      if (!formData.course_description)
+        currentErrors.course_description = "Course Description is required";
+
+      if (Object.keys(currentErrors).length > 0) {
+        setErrors(currentErrors);
+        return { success: false, errors: currentErrors };
+      }
       if (response.ok) {
         toastNotify("Course updated!");
       } else if (response.status === 400) {
-        toastNotify("Missing fields!");
+        toastNotify(json.error || "Failed to update course");
       } else if (response.status === 500) {
         toastNotify("Course already exists!");
       } else if (response.status === 403) {
@@ -124,6 +104,7 @@ const useUpdateCourse = (courseId: string | undefined) => {
     handleSubmit: updateCourse,
     resetFields,
     course,
+    errors,
   };
 };
 

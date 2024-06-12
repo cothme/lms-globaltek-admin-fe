@@ -2,13 +2,17 @@ import useCreateCourse from "../../../hooks/course hooks/useCreateCourse";
 import { useFetchAllCourse } from "../../../hooks/course hooks/useFetchAllCourse";
 
 const CreateCourseForm = () => {
-  const { handleChange, handleSubmit, formData } = useCreateCourse();
+  const { handleChange, handleSubmit, formData, errors } = useCreateCourse();
   const { triggerRefresh } = useFetchAllCourse();
+
+  const handleCreateCourse = async (e: React.FormEvent<HTMLFormElement>) => {
+    handleSubmit(e);
+  };
 
   return (
     <>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleCreateCourse}
         className="w-5/6 h-1/2 border border-black mx-auto p-4 bg-white shadow-md rounded-lg"
       >
         <div className="flex flex-row gap-5">
@@ -20,8 +24,7 @@ const CreateCourseForm = () => {
               Course Code
             </label>
             <input
-              required
-              data-testid={`course-code`}
+              data-testid="course-code"
               role="textfield"
               type="text"
               id="course_code"
@@ -30,6 +33,9 @@ const CreateCourseForm = () => {
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg"
             />
+            {errors.course_code && (
+              <p className="text-red-500 text-sm">{errors.course_code}</p>
+            )}
           </div>
           <div className="mb-4 w-2/3">
             <label
@@ -39,8 +45,7 @@ const CreateCourseForm = () => {
               Course Title
             </label>
             <input
-              required
-              data-testid={`course-title`}
+              data-testid="course-title"
               role="textfield"
               type="text"
               id="course_title"
@@ -49,6 +54,9 @@ const CreateCourseForm = () => {
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg"
             />
+            {errors.course_title && (
+              <p className="text-red-500 text-sm">{errors.course_title}</p>
+            )}
           </div>
         </div>
 
@@ -60,8 +68,7 @@ const CreateCourseForm = () => {
             Course Description
           </label>
           <textarea
-            required
-            data-testid={`course-details`}
+            data-testid="course-details"
             role="textfield"
             id="course_description"
             placeholder="Enter course description"
@@ -69,6 +76,9 @@ const CreateCourseForm = () => {
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg"
           />
+          {errors.course_description && (
+            <p className="text-red-500 text-sm">{errors.course_description}</p>
+          )}
         </div>
         <div className="mb-4">
           <label
@@ -78,8 +88,7 @@ const CreateCourseForm = () => {
             Subscription Type
           </label>
           <select
-            required
-            data-testid={`course-required-subscription`}
+            data-testid="course-required-subscription"
             role="textfield"
             id="required_subscription"
             value={formData.required_subscription}
@@ -93,10 +102,10 @@ const CreateCourseForm = () => {
 
         <div className="flex justify-between">
           <button
-            data-testid={`create-course`}
+            data-testid="create-course"
             role="button"
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
+            className="btn btn-info hover:bg-neutral text-white font-bold py-2 px-4 rounded-lg"
           >
             Create Course
           </button>

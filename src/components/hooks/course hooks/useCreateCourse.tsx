@@ -16,6 +16,7 @@ const useCreateCourse = () => {
   });
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Partial<Course>>({});
 
   const createCourse = async () => {
     setLoading(true);
@@ -37,7 +38,6 @@ const useCreateCourse = () => {
       if (response.ok) {
         toastNotify(json.message || "Course created successfully");
         triggerRefresh();
-        console.log(refresh);
       } else {
         toastNotify(json.error);
       }
@@ -62,10 +62,25 @@ const useCreateCourse = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const currentErrors: Partial<Course> = {};
+
+    if (!formData.course_code)
+      currentErrors.course_code = "Course Code is required";
+    if (!formData.course_title)
+      currentErrors.course_title = "Course Title is required";
+    if (!formData.course_description)
+      currentErrors.course_description = "Course Description is required";
+
+    if (Object.keys(currentErrors).length > 0) {
+      setErrors(currentErrors);
+      return { success: false, errors: currentErrors };
+    }
+
+    setErrors({});
     createCourse();
     resetFields();
-    console.log("Form submitted:", formData);
   };
+
   const resetFields = () => {
     setFormData({
       course_title: "",
@@ -75,6 +90,7 @@ const useCreateCourse = () => {
       required_subscription: "Free",
     });
   };
+
   return {
     createCourse,
     handleChange,
@@ -83,6 +99,7 @@ const useCreateCourse = () => {
     formData,
     loading,
     error,
+    errors,
   };
 };
 

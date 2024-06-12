@@ -9,7 +9,7 @@ const UpdateCourseForm = () => {
     e.preventDefault();
     handleSubmit();
   };
-  const { formData, loading, error, handleChange, handleSubmit } =
+  const { formData, loading, error, handleChange, handleSubmit, errors } =
     useUpdateCourse(courseId);
   if (loading) {
     return <LoadingScreen />;
@@ -41,6 +41,9 @@ const UpdateCourseForm = () => {
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg"
             />
+            {errors.course_code && (
+              <p className="text-red-500 text-sm">{errors.course_code}</p>
+            )}
           </div>
           <div className="mb-4 w-2/3">
             <label
@@ -59,6 +62,9 @@ const UpdateCourseForm = () => {
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg"
             />
+            {errors.course_title && (
+              <p className="text-red-500 text-sm">{errors.course_title}</p>
+            )}
           </div>
         </div>
 
@@ -78,6 +84,9 @@ const UpdateCourseForm = () => {
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg"
           />
+          {errors.course_description && (
+            <p className="text-red-500 text-sm">{errors.course_description}</p>
+          )}
         </div>
         <div className="mb-4">
           <label
@@ -104,9 +113,8 @@ const UpdateCourseForm = () => {
             data-testid={`edit-course`}
             role="button"
             type="submit"
-            className="btn btn-primary text-white font-bold py-2 px-4 rounded-lg"
+            className="btn btn-info text-white font-bold py-2 px-4 rounded-lg"
           >
-            <FaRegSave />
             Save
           </button>
         </div>
