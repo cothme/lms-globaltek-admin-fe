@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import useUpdateCourse from "../../../hooks/course hooks/useUpdateCourse";
 import LoadingScreen from "../../../helpers/LoadingScreen";
-import { FaRegSave } from "react-icons/fa";
 
 const UpdateCourseForm = () => {
   const { courseId } = useParams();

@@ -21,7 +21,7 @@ export const CourseProfileSubscribers: React.FC<UserProp> = ({ id }) => {
   if (error) {
     return (
       <div className="text-black font-garet text-center text-4xl m-4 bg-white rounded-xl p-4">
-        Error: {error}
+        {error}
       </div>
     );
   }

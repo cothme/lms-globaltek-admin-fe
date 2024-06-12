@@ -46,7 +46,7 @@ const useDeleteCourse = (
     } catch (error) {
       swal({
         icon: "error",
-        text: String(error + ": Unauthorized"),
+        text: String("Unauthorized"),
       });
       return false;
     }
@@ -74,12 +74,16 @@ const useDeleteCourse = (
           },
         }
       );
-      if (!response.ok) {
+      if (response.ok) {
+        toastNotify("Deleted Successfully!");
+        navigate("/courses");
+      } else if (response.status === 403) {
+        swal({
+          icon: "error",
+          text: String("Unauthorized"),
+        });
         throw new Error("Unauthorized");
       }
-
-      toastNotify("Deleted Successfully!");
-      navigate("/courses");
     } catch (error) {
       console.error("Error deleting course:", error);
       swal({

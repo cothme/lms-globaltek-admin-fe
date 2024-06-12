@@ -8,8 +8,8 @@ const CourseProfileOverview = () => {
   var date = new Date(createdAt);
   return (
     <>
-      <div className="w-11/12 border border-black rounded-box">
-        <table className="table w-auto">
+      <div className="lg:w-1/2 border border-black rounded-box ">
+        <table className="table w-auto table-black">
           <tbody>
             <tr>
               <th className="font-semibold">Code</th>

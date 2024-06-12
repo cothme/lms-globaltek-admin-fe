@@ -6,7 +6,7 @@ import { useFetchAllCourse } from "./useFetchAllCourse";
 
 const useCreateCourse = () => {
   const { user } = useAuthContext();
-  const { setRefresh, triggerRefresh, refresh } = useFetchAllCourse();
+  const { triggerRefresh } = useFetchAllCourse();
   const [formData, setFormData] = useState<Course>({
     course_title: "",
     course_description: "",

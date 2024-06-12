@@ -1,9 +1,7 @@
 import useCreateCourse from "../../../hooks/course hooks/useCreateCourse";
-import { useFetchAllCourse } from "../../../hooks/course hooks/useFetchAllCourse";
 
 const CreateCourseForm = () => {
   const { handleChange, handleSubmit, formData, errors } = useCreateCourse();
-  const { triggerRefresh } = useFetchAllCourse();
 
   const handleCreateCourse = async (e: React.FormEvent<HTMLFormElement>) => {
     handleSubmit(e);
