@@ -13,6 +13,7 @@ const useRemoveUserFromCourse = (userId: string) => {
   const removeUserFromCourse = async (courseId: string, userId: string) => {
     setLoading(true);
     setError(null);
+    console.log(userId, courseId);
     try {
       const response = await fetch(
         `http://localhost:4000/api/admin/remove/${userId}`,
@@ -22,7 +23,7 @@ const useRemoveUserFromCourse = (userId: string) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${user.jwt}`,
           },
-          body: JSON.stringify({ courseId }),
+          body: JSON.stringify({ courseName: courseId }),
         }
       );
 

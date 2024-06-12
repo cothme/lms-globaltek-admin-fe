@@ -1,7 +1,6 @@
 import Tier from "../../interfaces/Tier";
 import useAuthContext from "../useAuthContext";
 import { useState } from "react";
-import swal from "sweetalert";
 import swalSuccess from "../../helpers/swalSuccess";
 
 const useUpdateTiers = (tierId: string) => {
