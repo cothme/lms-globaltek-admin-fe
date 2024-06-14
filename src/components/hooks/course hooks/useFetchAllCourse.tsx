@@ -14,6 +14,8 @@ export const useFetchAllCourse = () => {
 
   useEffect(() => {
     const fetchCourses = async () => {
+      console.log("fetching courses");
+
       setLoading(true);
       setError(null);
       try {
@@ -48,6 +50,7 @@ export const useFetchAllCourse = () => {
 
   const triggerRefresh = () => {
     setRefresh((prev) => !prev);
+    console.log(refresh);
   };
 
   return {

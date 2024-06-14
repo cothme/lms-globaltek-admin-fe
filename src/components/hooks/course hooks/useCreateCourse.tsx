@@ -18,7 +18,23 @@ const useCreateCourse = () => {
   const [error, setError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Partial<Course>>({});
 
-  const createCourse = async () => {
+  const createCourse = async (e: React.FormEvent<HTMLFormElement>) => {
+    const currentErrors: Partial<Course> = {};
+
+    if (!formData.course_code)
+      currentErrors.course_code = "Course Code is required";
+    if (!formData.course_title)
+      currentErrors.course_title = "Course Title is required";
+    if (!formData.course_description)
+      currentErrors.course_description = "Course Description is required";
+
+    if (Object.keys(currentErrors).length > 0) {
+      setErrors(currentErrors);
+      return { success: false, errors: currentErrors };
+    }
+    resetFields();
+
+    setErrors({});
     setLoading(true);
     setError(null);
     try {
@@ -37,7 +53,6 @@ const useCreateCourse = () => {
 
       if (response.ok) {
         toastNotify(json.message || "Course created successfully");
-        triggerRefresh();
       } else {
         toastNotify(json.error);
       }
@@ -77,7 +92,8 @@ const useCreateCourse = () => {
     }
 
     setErrors({});
-    createCourse();
+
+    triggerRefresh();
     resetFields();
   };
 
