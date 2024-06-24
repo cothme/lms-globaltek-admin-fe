@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Tier from "../../interfaces/Tier";
 import useUpdateTiers from "../../hooks/tier hooks/useUpdateTiers";
+import swalSuccess from "../../helpers/swalSuccess";
 
 interface TierCardProps {
   tier: Tier;
@@ -14,6 +15,11 @@ const TierCard: React.FC<TierCardProps> = ({ tier }) => {
   );
 
   const handleButtonClick = () => {
+    if (tier.tier_title === "Free") {
+      swalSuccess("You cannot change the price of free tier", "error");
+      return;
+    }
+
     setIsFormVisible(!isFormVisible);
   };
 

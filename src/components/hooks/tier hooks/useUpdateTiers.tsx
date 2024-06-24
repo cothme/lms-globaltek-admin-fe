@@ -28,6 +28,7 @@ const useUpdateTiers = (tierId: string) => {
         }
       );
       if (!response.ok) {
+        swalSuccess("You cannot change the price of free tier", "error");
         const errorData = await response.json();
         throw new Error(errorData.message || "Failed to update tier");
       }
