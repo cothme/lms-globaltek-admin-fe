@@ -18,7 +18,7 @@ const useCreateCourse = () => {
   const [error, setError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Partial<Course>>({});
 
-  const createCourse = async (e: React.FormEvent<HTMLFormElement>) => {
+  const createCourse = async () => {
     const currentErrors: Partial<Course> = {};
 
     if (!formData.course_code)

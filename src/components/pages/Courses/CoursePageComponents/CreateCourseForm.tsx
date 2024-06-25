@@ -3,13 +3,12 @@ import { useFetchAllCourse } from "../../../hooks/course hooks/useFetchAllCourse
 import useFetchTiers from "../../../hooks/tier hooks/useFetchTiers";
 const CreateCourseForm = () => {
   const { tiers } = useFetchTiers();
-  const { handleChange, handleSubmit, formData, errors, createCourse } =
-    useCreateCourse();
+  const { handleChange, formData, errors, createCourse } = useCreateCourse();
   const { triggerRefresh } = useFetchAllCourse();
 
   const handleCreateCourse = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await createCourse(e);
+    await createCourse();
     triggerRefresh();
   };
 

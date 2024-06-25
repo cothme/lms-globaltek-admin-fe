@@ -2,12 +2,14 @@ import User from "../../interfaces/User";
 import { useUpdateStudentForm } from "../../hooks/student hooks/useUpdateStudentForm";
 import StudentCoursesEnrolled from "./StudentCoursesEnrolled";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 interface UserProp {
   users: User | null;
 }
 
 const StudentUpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
+  const [file, setFile] = useState();
   const { userName } = useParams();
   const {
     formData,
@@ -16,6 +18,7 @@ const StudentUpdateForm: React.FC<UserProp> = ({ users }: UserProp) => {
     handleChange,
     handleFileChange,
     updateUser,
+    updateUserWithFile,
   } = useUpdateStudentForm(users);
 
   return (

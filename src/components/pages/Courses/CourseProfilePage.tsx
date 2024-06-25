@@ -5,7 +5,7 @@ import CourseProfileBody from "./CourseProfilePageComponents/CourseProfileBody";
 
 const CourseProfilePage = () => {
   const { courseId } = useParams();
-  const { course, loading, error, setCourse } = useFetchCourse(courseId);
+  const { course, setCourse } = useFetchCourse(courseId);
 
   return (
     <>

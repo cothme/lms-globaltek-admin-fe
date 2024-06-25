@@ -1,5 +1,4 @@
 import UpdateCourseForm from "./Courses/CoursePageComponents/UpdateCourseForm";
-import { useParams } from "react-router-dom";
 
 const UpdateCoursePage = () => {
   return (

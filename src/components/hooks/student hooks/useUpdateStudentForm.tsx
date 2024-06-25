@@ -8,7 +8,6 @@ interface updateFormData {
   given_name?: string;
   email?: string;
 }
-
 export const useUpdateStudentForm = (initialUser: User | null) => {
   const { user } = useAuthContext();
   const [formData, setFormData] = useState<updateFormData>({
@@ -83,6 +82,41 @@ export const useUpdateStudentForm = (initialUser: User | null) => {
     } catch (err: any) {}
   };
 
+  const updateUserWithFile = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!initialUser) return;
+
+    const formDataWithFile = new FormData();
+    formDataWithFile.append("family_name", formData.family_name || "");
+    formDataWithFile.append("given_name", formData.given_name || "");
+    formDataWithFile.append("email", formData.email || "");
+    if (file) {
+      formDataWithFile.append("image", file);
+    }
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/user/${
+          initialUser._id
+        }`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${user.jwt}`,
+          },
+          body: formDataWithFile,
+        }
+      );
+      const json = await response.json();
+      if (response.ok) {
+        toastNotify("Update successful! Please refresh");
+        console.log("Update successful");
+      } else {
+        console.log("Update failed!", formData);
+        toastNotify("Update failed:" + " " + json.error);
+      }
+    } catch (err: any) {}
+  };
   return {
     formData,
     file,
@@ -90,5 +124,6 @@ export const useUpdateStudentForm = (initialUser: User | null) => {
     handleChange,
     handleFileChange,
     updateUser,
+    updateUserWithFile,
   };
 };
