@@ -23,27 +23,6 @@ const UpdateCourseForm = () => {
         className="w-5/6 h-1/2 border border-black mx-auto p-4 bg-white shadow-md rounded-lg"
       >
         <div className="flex flex-row gap-5">
-          <div className="mb-4 w-1/3">
-            <label
-              htmlFor="course_code"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Course Code
-            </label>
-            <input
-              data-testid={`course-code`}
-              role="textfield"
-              type="text"
-              id="course_code"
-              placeholder="e.g, IT0041"
-              value={formData.course_code}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-            />
-            {errors.course_code && (
-              <p className="text-red-500 text-sm">{errors.course_code}</p>
-            )}
-          </div>
           <div className="mb-4 w-2/3">
             <label
               htmlFor="course_title"
