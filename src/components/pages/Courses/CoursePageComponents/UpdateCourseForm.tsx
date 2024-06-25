@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import useUpdateCourse from "../../../hooks/course hooks/useUpdateCourse";
 import LoadingScreen from "../../../helpers/LoadingScreen";
+import useFetchTiers from "../../../hooks/tier hooks/useFetchTiers";
 
 const UpdateCourseForm = () => {
+  const { tiers } = useFetchTiers();
   const { courseId } = useParams();
   const handleUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -81,8 +83,9 @@ const UpdateCourseForm = () => {
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg"
           >
-            <option value="Free">Free</option>
-            <option value="Premium">Premium</option>
+            {tiers.map((tier) => (
+              <option value={tier.tier_title}>{tier.tier_title}</option>
+            ))}
           </select>
         </div>
 

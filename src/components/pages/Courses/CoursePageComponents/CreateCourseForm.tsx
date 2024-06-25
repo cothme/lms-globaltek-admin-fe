@@ -1,6 +1,8 @@
 import useCreateCourse from "../../../hooks/course hooks/useCreateCourse";
 import { useFetchAllCourse } from "../../../hooks/course hooks/useFetchAllCourse";
+import useFetchTiers from "../../../hooks/tier hooks/useFetchTiers";
 const CreateCourseForm = () => {
+  const { tiers } = useFetchTiers();
   const { handleChange, handleSubmit, formData, errors, createCourse } =
     useCreateCourse();
   const { triggerRefresh } = useFetchAllCourse();
@@ -97,8 +99,9 @@ const CreateCourseForm = () => {
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg"
           >
-            <option value="Free">Free</option>
-            <option value="Premium">Premium</option>
+            {tiers.map((tier) => (
+              <option value={tier.tier_title}>{tier.tier_title}</option>
+            ))}
           </select>
         </div>
 
