@@ -3,6 +3,7 @@ import { jwtDecode, JwtPayload } from "jwt-decode";
 import { useState } from "react";
 import WoodBackground from "../WoodBackground";
 import { useLogin } from "../hooks/useLogin";
+import WhiteLogo from "../../assets/branding/linkedlearnlogoadminwhite.png";
 
 interface userGoogle {
   family_name: string;
@@ -52,11 +53,7 @@ const LoginPage = () => {
     <>
       <WoodBackground />
       <div className="relative min-w-screen min-h-screen flex items-center lg:flex-row md:flex-col sm:flex-col justify-center">
-        <img
-          src="src/assets/branding/linkedlearnlogoadminwhite.png"
-          className=""
-          alt=""
-        />
+        <img src={WhiteLogo} className="" alt="" />
         <div className="w-full max-w-xs">
           <form
             onSubmit={(e) =>
