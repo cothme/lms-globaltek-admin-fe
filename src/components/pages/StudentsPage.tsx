@@ -1,9 +1,18 @@
 import { ImSearch } from "react-icons/im";
 import LoadingScreen from "../helpers/LoadingScreen";
 import { useFetchAllStudents } from "../hooks/student hooks/useFetchAllStudents";
+import { useState } from "react";
 
 const StudentsPage = () => {
   const { users, loading, error } = useFetchAllStudents();
+  const [search, setSearch] = useState("");
+
+  const filteredUsers = users.filter(
+    (user) =>
+      user.user_name?.toLowerCase().includes(search.toLowerCase()) ||
+      user.family_name?.toLowerCase().includes(search.toLowerCase()) ||
+      user.given_name?.toLowerCase().includes(search.toLowerCase())
+  );
 
   if (loading) {
     return <LoadingScreen />;
@@ -20,6 +29,8 @@ const StudentsPage = () => {
             type="text"
             className="w-full inline-block border border-gray-300 rounded-lg px-4 py-2 pl-10 focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
             placeholder="Search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <ImSearch className="text-gray-400" />
@@ -39,7 +50,7 @@ const StudentsPage = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {filteredUsers.map((user) => (
               <tr key={user._id}>
                 <td>
                   <div className="flex items-center gap-3">

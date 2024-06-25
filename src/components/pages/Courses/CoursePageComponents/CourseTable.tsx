@@ -1,10 +1,12 @@
-import { ImSearch } from "react-icons/im";
 import { useFetchAllCourse } from "../../../hooks/course hooks/useFetchAllCourse";
-import { useState } from "react";
 
-const CourseTable = () => {
+interface SearchProps {
+  courseSearch: string;
+  setCourseSearch: (search: string) => void;
+}
+
+const CourseTable: React.FC<SearchProps> = ({ courseSearch }) => {
   const { courses } = useFetchAllCourse();
-  const [courseSearch, setCourseSearch] = useState("");
 
   const filteredCourses = courses.filter(
     (course) =>
@@ -15,18 +17,6 @@ const CourseTable = () => {
 
   return (
     <>
-      <div className="relative m-4">
-        <input
-          type="text"
-          className="w-full inline-block border border-gray-300 rounded-lg px-4 py-2 pl-10 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent"
-          placeholder="Search"
-          value={courseSearch}
-          onChange={(e) => setCourseSearch(e.target.value)}
-        />
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <ImSearch className="text-gray-400" />
-        </div>
-      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
