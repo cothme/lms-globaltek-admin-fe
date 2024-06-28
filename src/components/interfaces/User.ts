@@ -7,4 +7,5 @@ export default interface User {
   isFromGoogle?: boolean;
   subscription_tier?: string;
   createdAt?: string;
+  picture?: string;
 }
