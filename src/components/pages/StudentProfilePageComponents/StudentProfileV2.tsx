@@ -1,4 +1,5 @@
 import User from "../../interfaces/User";
+import ProfileImagePlaceHolder from "../../../assets/profile-img-placeholder.png";
 
 interface UserProp {
   users: User | null;
@@ -11,7 +12,13 @@ const StudentProfileV2: React.FC<UserProp> = ({ users }: UserProp) => {
         <div className="relative flex items-center z-10 ">
           <img
             className="ml-8 mt-6 w-32 lg:w-32 rounded-xl"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+            src={
+              users?.picture
+                ? import.meta.env.VITE_REACT_APP_API_ROOT! +
+                  "/" +
+                  users?.picture
+                : ProfileImagePlaceHolder
+            }
             alt="User profile"
           />
           <div className="flex flex-col">
