@@ -25,9 +25,9 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
     <>
       <div className="relative m-4">
         <div className="z-10">
-          <div>
+          <div className="flex justify-center">
             <img
-              className="lg:w-1/2 shadow-md rounded-box"
+              className="lg:w-2/6 shadow-md rounded-box"
               src={CourseBanner}
               alt=""
             />
