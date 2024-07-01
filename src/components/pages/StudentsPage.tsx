@@ -60,9 +60,7 @@ const StudentsPage = () => {
                         <img
                           src={
                             user?.picture
-                              ? import.meta.env.VITE_REACT_APP_API_ROOT! +
-                                "/" +
-                                user?.picture
+                              ? user?.picture
                               : ProfileImagePlaceHolder
                           }
                         />
