@@ -2,6 +2,7 @@ import { ImSearch } from "react-icons/im";
 import LoadingScreen from "../helpers/LoadingScreen";
 import { useFetchAllStudents } from "../hooks/student hooks/useFetchAllStudents";
 import { useState } from "react";
+import ProfileImagePlaceHolder from "../../assets/profile-img-placeholder.png";
 
 const StudentsPage = () => {
   const { users, loading, error } = useFetchAllStudents();
@@ -57,8 +58,13 @@ const StudentsPage = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
-                          src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
-                          alt="Avatar Tailwind CSS Component"
+                          src={
+                            user?.picture
+                              ? import.meta.env.VITE_REACT_APP_API_ROOT! +
+                                "/" +
+                                user?.picture
+                              : ProfileImagePlaceHolder
+                          }
                         />
                       </div>
                     </div>
