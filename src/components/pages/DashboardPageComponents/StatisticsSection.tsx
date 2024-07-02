@@ -14,6 +14,7 @@ const StatisticsSection = () => {
     <>
       <div className="flex md:flex-row flex-col">
         <a
+          data-testid="student-count"
           href={"/students"}
           className="bg-gradient-to-r from-theme-blue to-theme-maroon
           w-full
@@ -27,6 +28,7 @@ const StatisticsSection = () => {
           </div>
         </a>
         <a
+          data-testid="course-count"
           href={"/courses"}
           className="bg-gradient-to-r from-theme-maroon from-25% via-theme-maroon via-100% 
           w-full
