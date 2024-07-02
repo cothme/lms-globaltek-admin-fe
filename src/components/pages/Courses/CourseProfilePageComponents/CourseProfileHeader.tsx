@@ -49,6 +49,7 @@ const CourseProfileHeader: React.FC<CourseProp> = ({
         </button>
 
         <a
+          data-testid={`edit-course-btn`}
           href={`/courses/update/${course?.course_title}`}
           className="btn text-white btn-primary font-garet"
         >
