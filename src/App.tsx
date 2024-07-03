@@ -14,6 +14,7 @@ import CourseProfilePage from "./components/pages/Courses/CourseProfilePage";
 import CreateCoursePage from "./components/pages/Courses/CreateCoursePage";
 import UpdateCoursePage from "./components/pages/UpdateCoursePage";
 import TierMainPage from "./components/pages/Tiers/TierMainPage";
+import ModuleOverview from "./components/pages/Module/ModuleOverview";
 
 const App = () => {
   const { user } = useAuthContext();
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="students/:userName" element={<StudentProfilePage />} />
             <Route path="/courses/:courseId" element={<CourseProfilePage />} />
             <Route path="/courses/create" element={<CreateCoursePage />} />
+            <Route path="/:topicName" element={<ModuleOverview />} />
             <Route
               path="/courses/update/:courseId"
               element={<UpdateCoursePage />}

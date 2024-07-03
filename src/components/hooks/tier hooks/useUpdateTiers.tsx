@@ -27,13 +27,12 @@ const useUpdateTiers = (tierId: string) => {
           body: JSON.stringify(updatedTierData), // Use updatedTierData instead of formData
         }
       );
-      if (!response.ok) {
-        swalSuccess("You cannot change the price of free tier", "error");
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to update tier");
+      if (response.status === 500) {
+        swalSuccess("Tier price must be less than 1000", "error");
+      } else {
+        swalSuccess("Tier updated successfully", "success");
+        setLoading(false);
       }
-      swalSuccess("Tier updated successfully", "success");
-      setLoading(false);
     } catch (err: any) {
       setError(err.message || "Failed to update tier");
       setLoading(false);

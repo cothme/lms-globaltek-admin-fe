@@ -58,7 +58,7 @@ const TierCard: React.FC<TierCardProps> = ({ tier }) => {
                   <span className="label-text">New Price</span>
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   value={newPrice}
                   id="tier_price"
                   onChange={handleInputChange}
