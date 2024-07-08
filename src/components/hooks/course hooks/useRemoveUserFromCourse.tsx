@@ -16,7 +16,7 @@ const useRemoveUserFromCourse = (userId: string) => {
     console.log(userId, courseId);
     try {
       const response = await fetch(
-        `http://localhost:4000/api/admin/remove/${userId}`,
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/admin/remove/${userId}`,
         {
           method: "POST",
           headers: {
