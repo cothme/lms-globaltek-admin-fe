@@ -34,15 +34,19 @@ const ModuleOverview = () => {
       </div>
       <div className="mb-2">
         <strong>PDF:</strong>{" "}
-        <a href={topic?.pdf} className="text-blue-500 underline">
-          {topic?.pdf}
-        </a>
+        <embed
+          width="500"
+          height="375"
+          src={topic?.pdf}
+          className="text-blue-500 underline"
+        />
       </div>
       <div className="mb-4">
         <strong>Video:</strong>{" "}
-        <a href={topic?.video} className="text-blue-500 underline">
-          {topic?.video}
-        </a>
+        <video width="320" height="240" controls>
+          <source src={topic?.video} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
       <div className="flex justify-end gap-4">
         <button

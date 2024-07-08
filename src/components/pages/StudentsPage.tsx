@@ -75,8 +75,15 @@ const StudentsPage = () => {
                 <td>
                   {user.given_name}
                   <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
+                  <span
+                    className={`badge ${
+                      user.subscription_tier === "Free" ||
+                      user.subscription_tier === "free"
+                        ? "badge-ghost"
+                        : "badge-info"
+                    } badge-sm`}
+                  >
+                    {user.subscription_tier}
                   </span>
                 </td>
                 <td>{user.email}</td>
