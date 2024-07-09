@@ -47,7 +47,6 @@ const useRemoveUserFromCourse = (userId: string) => {
   const confirmDelete = (courseId: string, userId: string) => {
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this course!",
       icon: "warning",
       buttons: ["Cancel", "Delete"],
       dangerMode: true,

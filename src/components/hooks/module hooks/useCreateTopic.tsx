@@ -18,6 +18,7 @@ const useCreateTopic = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Partial<Topic>>({});
+  const [success, setSuccess] = useState<boolean>(false);
 
   const createTopic = async () => {
     const currentErrors: Partial<Topic> = {};
@@ -58,10 +59,10 @@ const useCreateTopic = () => {
       const json = await response.json();
 
       if (response.ok) {
-        toastNotify(json.message || "Topic created successfully");
+        setSuccess(true);
         resetFields();
       } else {
-        toastNotify(json.error);
+        setError(json.error);
       }
     } catch (err: any) {
       setError(err.message || "Failed to create topic");
@@ -114,6 +115,7 @@ const useCreateTopic = () => {
     handleChange,
     handleFileChange,
     handleSubmit,
+    setFormData,
     resetFields,
     formData,
     pdfFile,
@@ -121,6 +123,10 @@ const useCreateTopic = () => {
     loading,
     error,
     errors,
+    setErrors,
+    setError,
+    setSuccess,
+    success,
   };
 };
 

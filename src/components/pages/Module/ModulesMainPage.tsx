@@ -4,14 +4,25 @@ import { useParams } from "react-router-dom";
 import useCreateTopic from "../../hooks/module hooks/useCreateTopic";
 
 const ModulesMainPage = () => {
-  const { createTopic, handleChange, handleFileChange, formData, errors } =
-    useCreateTopic();
+  const {
+    createTopic,
+    handleChange,
+    handleFileChange,
+    formData,
+    resetFields,
+    errors,
+    error,
+    setErrors,
+    setError,
+    setSuccess,
+    success,
+  } = useCreateTopic();
   const handleCreateTopic = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await createTopic();
   };
   const { courseId } = useParams();
-  const { topics, loading, error } = useFetchTopics(String(courseId));
+  const { topics, loading } = useFetchTopics(String(courseId));
 
   return (
     <>
@@ -67,6 +78,7 @@ const ModulesMainPage = () => {
                     onChange={handleChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                   />
+
                   {errors.topic_description && (
                     <p className="text-red-500 text-sm">
                       {errors.topic_description}
@@ -88,9 +100,6 @@ const ModulesMainPage = () => {
                     onChange={handleFileChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                   />
-                  {errors.pdf && (
-                    <p className="text-red-500 text-sm">{errors.pdf}</p>
-                  )}
                 </div>
 
                 <div className="mb-4">
@@ -121,13 +130,34 @@ const ModulesMainPage = () => {
                     Create Topic
                   </button>
                 </div>
-
-                {error && <p className="text-red-500 mt-2">{error}</p>}
+                {error && (
+                  <p className="text-white text-bold mt-2 p-4 bg-red-400 text-center">
+                    {error}
+                  </p>
+                )}
+                {success && (
+                  <p className="text-white text-bold mt-2 p-4 bg-green-400 text-center">
+                    Topic created successfully!
+                  </p>
+                )}
               </form>
               <div className="modal-action">
                 <form method="dialog">
                   {/* if there is a button, it will close the modal */}
-                  <button className="btn">Close</button>
+                  <button
+                    onClick={() => {
+                      setError(null);
+                      setErrors({});
+                      resetFields();
+                      setSuccess(false);
+                    }}
+                    className="btn"
+                  >
+                    Close
+                  </button>
+                  {errors.video && (
+                    <p className="text-red-500 text-sm">{errors.video}</p>
+                  )}
                 </form>
               </div>
             </div>
