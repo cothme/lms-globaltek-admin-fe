@@ -2,6 +2,7 @@ import { IoMdAdd } from "react-icons/io";
 import useFetchTopics from "../../hooks/module hooks/useFetchTopics";
 import { useParams } from "react-router-dom";
 import useCreateTopic from "../../hooks/module hooks/useCreateTopic";
+import useDeleteTopic from "../../hooks/module hooks/useDeleteTopic";
 
 const ModulesMainPage = () => {
   const {
@@ -123,6 +124,7 @@ const ModulesMainPage = () => {
 
                 <div className="flex justify-between">
                   <button
+                    disabled={loading}
                     type="submit"
                     className="btn btn-info hover:bg-neutral text-white font-bold py-2 px-4 rounded-lg"
                     // disabled={loading}

@@ -1,59 +1,37 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Course from "../../interfaces/Course";
-import useAuthContext from "../useAuthContext";
-import swal from "sweetalert";
+import { useState, useCallback } from "react";
 import { toastNotify } from "../../helpers/toastNotify";
+import swal from "sweetalert";
+import useAuthContext from "../useAuthContext";
+import { useNavigate } from "react-router-dom";
 
-const useDeleteTopic = (
-  course: Course | null,
-  setCourse: (course: Course) => void
-) => {
-  const [isPublishing, setIsPublishing] = useState(false);
+const useDeleteTopic = (topicId: string, courseId: string) => {
   const { user } = useAuthContext();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const updatePublishedStatus = async (
-    courseId: string | undefined,
-    newStatus: boolean | undefined
-  ) => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/topic/${courseId}`,
-        {
-          method: "PATCH",
-          headers: {
-            Authorization: `Bearer ${user.jwt}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ published: newStatus }),
-        }
-      );
+  const handleDelete = useCallback(async () => {
+    const confirmDeletion = await swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this topic!",
+      icon: "warning",
+      buttons: [
+        "Cwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwancel",
+        "Delete",
+      ],
+      dangerMode: true,
+    });
 
-      if (!response.ok) {
-        throw new Error("");
-      }
-
-      swal({
-        icon: "success",
-        text: course?.published
-          ? "Unpublished Successfully!"
-          : "Published Successfully!",
-      });
-      return true;
-    } catch (error) {
-      swal({
-        icon: "error",
-        text: String("Unauthorized"),
-      });
-      return false;
+    if (!confirmDeletion) {
+      return;
     }
-  };
 
-  const handleDelete = async () => {
+    setLoading(true);
+    setError(null);
+
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/course/${course?._id}`,
+        `${import.meta.env.VITE_REACT_APP_API_ROOT}/api/topic/${topicId}`,
         {
           method: "DELETE",
           headers: {
@@ -62,39 +40,26 @@ const useDeleteTopic = (
           },
         }
       );
-      if (response.ok) {
-        toastNotify("Deleted Successfully!");
-        navigate("/courses");
-      } else if (response.status === 403) {
-        swal({
-          icon: "error",
-          text: String("Unauthorized"),
-        });
-        throw new Error("Unauthorized");
+
+      if (!response.ok) {
+        throw new Error("Failed to delete the topic");
       }
-    } catch (error) {
-      console.error("Error deleting course:", error);
+
+      toastNotify("Deleted Successfully!");
+      navigate("/courses/" + courseId);
+    } catch (error: any) {
+      console.error("Error deleting topic:", error);
+      setError(error);
       swal({
         icon: "error",
         text: String(error),
       });
+    } finally {
+      setLoading(false);
     }
-  };
+  }, [courseId]);
 
-  const confirmDelete = () => {
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this course!",
-      icon: "warning",
-      buttons: ["Cancel", "Delete"],
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        handleDelete();
-      }
-    });
-  };
-  return { isPublishing, confirmDelete };
+  return { handleDelete, loading, error };
 };
 
 export default useDeleteTopic;
